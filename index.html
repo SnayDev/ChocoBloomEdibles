@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Hamburger solo mobile -->
   <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
     <div></div><div></div><div></div>
   </div>
@@ -32,7 +33,7 @@
         <li><a href="prodotti.html">Prodotti</a></li>
         <li><a href="#about">Visione</a></li>
       </ul>
-      <div class="logo-center glowing-logo">
+      <div class="logo-center">
         <a href="index.html">
           <img src="img/mascotte.png" alt="Mascotte navbar" />
         </a>
@@ -64,12 +65,12 @@
     <h2>I Nostri Edibles</h2>
     <div class="product-list">
       <div class="product-card">
-        <img src="img/prodotto1.png" alt="Choco 1000mg" />
+        <img src="img/prodotto1.png" alt="ChocoBomb 1000mg" />
         <h3>ChocoBomb 1000mg</h3>
         <p>5 pezzi da 200mg • Fondente • Distillato D9</p>
       </div>
       <div class="product-card">
-        <img src="img/prodotto2.png" alt="Choco 500mg" />
+        <img src="img/prodotto2.png" alt="ChocoMicro 500mg" />
         <h3>ChocoMicro 500mg</h3>
         <p>5 pezzi da 100mg • Nocciola • Estratto Hybrid</p>
       </div>
@@ -95,7 +96,6 @@
 
       setTimeout(() => {
         splash.classList.add("fade-out");
-
         setTimeout(() => {
           splash.style.display = 'none';
           gate.style.display = 'flex';
