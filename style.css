@@ -54,6 +54,34 @@ body {
   color: #ff00cc;
 }
 
+/* Logo centro Navbar + glowing */
+.logo-center {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  margin: 0 40px;
+  z-index: 2002;
+  position: relative;
+}
+.logo-center img {
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  /* Per evitare che il glowing venga tagliato */
+  box-sizing: content-box;
+}
+.glowing-logo img {
+  box-shadow: 0 0 25px #ff00cc, 0 0 60px #ff3399;
+  animation: glowLogoPulse 2s infinite ease-in-out;
+}
+@keyframes glowLogoPulse {
+  0% { box-shadow: 0 0 10px #ff00cc, 0 0 20px #ff3399; }
+  50% { box-shadow: 0 0 40px #ff3399, 0 0 80px #ff00cc; }
+  100% { box-shadow: 0 0 10px #ff00cc, 0 0 20px #ff3399; }
+}
+
 /* Hamburger menu (mobile only) */
 .hamburger {
   display: none;
@@ -120,7 +148,24 @@ body {
   .hamburger {
     display: flex;
   }
-  /* Non mostrare mascotte/logo in navbar mobile */
+  /* Mascotte sempre centrata su mobile */
+  .logo-center {
+    display: flex !important;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 2002;
+  }
+  .logo-center img {
+    height: 42px;
+  }
+  .side-menu {
+    top: 70px;
+    width: 70vw;
+    min-width: 180px;
+    max-width: 300px;
+  }
 }
 
 /* Navbar Desktop */
@@ -141,6 +186,11 @@ body {
   .menu.right {
     justify-content: flex-start;
     flex: 1;
+  }
+  .logo-center {
+    margin: 0 40px;
+    position: static;
+    transform: none;
   }
 }
 
