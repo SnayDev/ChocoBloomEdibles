@@ -57,8 +57,8 @@ a:hover {
           drop-shadow(0 0 60px #ff00cc);
   animation: logoGlowPulse 2.8s infinite alternate;
   background: none;
+  transition: filter 0.3s;
 }
-
 @keyframes logoGlowPulse {
   0% { filter: drop-shadow(0 0 8px #ff00cc) drop-shadow(0 0 16px #ff3399) drop-shadow(0 0 24px #ff00cc); }
   50% { filter: drop-shadow(0 0 36px #ff00cc) drop-shadow(0 0 80px #ff3399) drop-shadow(0 0 160px #ff00cc); }
@@ -383,12 +383,11 @@ a:hover {
 .fadein {
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeinUp 1.6s cubic-bezier(.17,.67,.83,.67) forwards;
+  transition: opacity 1.1s cubic-bezier(.17,.67,.83,.67), transform 1.1s cubic-bezier(.17,.67,.83,.67);
 }
-@keyframes fadeinUp {
-  0% { opacity: 0; transform: translateY(30px);}
-  60% { opacity: 1; transform: translateY(-5px);}
-  100% { opacity: 1; transform: translateY(0);}
+.fadein-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Splash screen */
