@@ -6,6 +6,47 @@
   <title>ChocoBloom</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <style>
+    .slider-effects-section {
+      margin: 34px auto 0 auto;
+      max-width: 390px;
+      background: #170022;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #ff00cc22;
+      padding: 24px 22px 16px 22px;
+      text-align: center;
+    }
+    .slider-effects-section label {
+      font-weight: 500;
+      color: #fff;
+      font-size: 1.12em;
+      display: block;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    .slider-effects-section input[type="range"] {
+      width: 100%;
+      margin: 12px 0 2px 0;
+      accent-color: #ff00cc;
+      height: 3.5px;
+      border-radius: 4px;
+      background: linear-gradient(90deg,#ff00cc,#ff3399 80%);
+    }
+    .slider-effects-section .slider-value-label {
+      font-size: 1.13em;
+      font-weight: 600;
+      color: #ff00cc;
+      margin-top: 2px;
+      display: block;
+    }
+    .slider-effects-section .slider-effect-text {
+      margin-top: 8px;
+      font-size: 0.98em;
+      color: #fff;
+      font-weight: 500;
+      min-height: 24px;
+    }
+  </style>
 </head>
 <body>
   <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
@@ -34,7 +75,6 @@
       </ul>
     </nav>
   </header>
-
   <section class="hero">
     <div class="hero-content">
       <h1 class="chocobloom-glow">CHOCOBLOOM</h1>
@@ -46,22 +86,9 @@
       <div class="bloom-animation"></div>
     </div>
   </section>
-
-  <!-- MOODBOARD AGGIUNTA QUI sotto la hero -->
-  <section class="moodboard-section fadein">
-    <h2>Moodboard Sensoriale</h2>
-    <div class="moodboard-grid">
-      <div class="moodboard-item"><img src="img/sensoriale.png" alt="Avvolgente"><span>Avvolgente</span></div>
-      <div class="moodboard-item"><img src="img/mood2.png" alt="Fiorito"><span>Fiorito</span></div>
-      <div class="moodboard-item"><img src="img/mood3.png" alt="Intenso"><span>Intenso</span></div>
-      <div class="moodboard-item"><img src="img/mood4.png" alt="Magico"><span>Magico</span></div>
-    </div>
-  </section>
-
   <section class="social-proof">
     <span class="badge-live">🔴 <span>LIVE</span>: Prendiamo nuovi ordini oggi · Nuovo drop tra <span id="countdown">03:12:36</span></span>
   </section>
-
   <section class="dose-section fadein">
     <h2>Calcola la tua dose ideale</h2>
     <form id="dose-calc-form" class="dose-calc-advanced">
@@ -88,6 +115,12 @@
       <button type="submit" class="cta">Calcola dose</button>
     </form>
     <div id="dose-calc-result" class="dose-calc-result"></div>
+    <div class="slider-effects-section" id="slider-effects-section" style="display:none;">
+      <label for="slider-dose">Simula una dose diversa:</label>
+      <input type="range" id="slider-dose" min="5" max="1000" step="5" value="50">
+      <span class="slider-value-label"><span id="slider-dose-value">50</span>mg THC</span>
+      <div class="slider-effect-text" id="slider-effect-text"></div>
+    </div>
     <div class="dose-calc-safety">
       <small>
         Attenzione: i risultati sono solo indicativi. Inizia sempre con la dose minima possibile. Gli effetti possono durare anche 8 ore.<br>
@@ -95,7 +128,6 @@
       </small>
     </div>
   </section>
-
   <section class="timeline-section fadein" id="timeline">
     <h2>La Storia di ChocoBloom</h2>
     <div class="timeline">
@@ -122,7 +154,6 @@
       </div>
     </div>
   </section>
-
   <section class="ingredienti-section fadein">
     <h2>Ingredienti Scelti & Certificazioni</h2>
     <div class="ingredienti-list">
@@ -148,7 +179,6 @@
       </div>
     </div>
   </section>
-
   <section class="faq-section fadein">
     <h2>FAQ</h2>
     <div class="faq-list">
@@ -167,7 +197,6 @@
       </div>
     </div>
   </section>
-
   <footer class="footer" id="footer">
     <div>
       <a href="https://t.me/ChocoBloomEdibles_Order" target="_blank">Telegram</a>
@@ -181,13 +210,11 @@
       <small>Accessibilità: testo ad alto contrasto, navigazione da tastiera, immagini con alt, audio descritto. Sito ottimizzato per mobile e desktop.</small>
     </div>
   </footer>
-
   <script>
     function toggleMenu() {
       var menu = document.getElementById("sideMenu");
       menu.classList.toggle("show");
     }
-
     document.querySelectorAll('.faq-q').forEach(btn => {
       btn.onclick = function() {
         this.classList.toggle("open");
@@ -196,12 +223,7 @@
       }
     });
 
-    document.getElementById('dose-calc-form').addEventListener('submit', function(e){
-      e.preventDefault();
-      const weight = parseFloat(this.weight.value);
-      const sex = this.sex.value;
-      const tolerance = this.tolerance.value;
-      const product = this.product.value;
+    function calculateDose(weight, sex, tolerance) {
       let dose = weight * 0.2;
       if(sex === 'f') dose *= 0.85;
       if(sex === 'x') dose *= 0.93;
@@ -210,29 +232,75 @@
       else if(tolerance === 'med') dose *= 1;
       else if(tolerance === 'high') dose *= 2;
       dose = Math.round(dose);
-      if(dose < 5) dose = 5;
-      if(dose > 80) dose = 80;
-      let resultText = '';
+      if (dose < 5) dose = 5;
+      if (dose > 1000) dose = 1000;
+      return dose;
+    }
+
+    function getCioccolatiniString(doseMg) {
+      const mgPerPz = 200;
+      const gPerPz = 10;
+      let cioc = doseMg / mgPerPz;
+      let ciocTxt = (cioc < 1) ? `${Math.round(cioc * 10) / 10}` : `${Math.floor(cioc)}`;
+      let gr = Math.round((doseMg / mgPerPz) * gPerPz * 10) / 10;
+      if (cioc < 1) {
+        return `≈ ${Math.round(cioc*2)/2} cioccolatino (${gr}g di cioccolato)`;
+      } else {
+        return `${ciocTxt} cioccolatino/i (${gr}g di cioccolato)`;
+      }
+    }
+
+    function getSyrupString(doseMg) {
+      let mgPerMl = 1000/150;
+      let ml = Math.round((doseMg/mgPerMl)*10)/10;
+      return `≈ ${ml}ml di syrup`;
+    }
+
+    function getEffectPhrase(dose) {
+      if (dose < 10) return "Effetti molto leggeri, percepibili solo per principianti.";
+      if (dose < 20) return "Effetti leggerissimi, adatti a chi non ha mai consumato THC.";
+      if (dose < 35) return "Effetti moderati, rilassanti e gestibili per la maggior parte delle persone.";
+      if (dose < 60) return "Effetti forti: sconsigliato per principianti. Possibili alterazioni importanti della percezione.";
+      if (dose < 100) return "Dose molto elevata: effetti molto forti, lunga durata, rischio di discomfort. Massima cautela!";
+      return "Dose estremamente alta: rischio di effetti indesiderati, paranoia, nausea. Solo per utenti con altissima tolleranza. Evitare se inesperti!";
+    }
+
+    document.getElementById('dose-calc-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const weight = parseFloat(this.weight.value);
+      const sex = this.sex.value;
+      const tolerance = this.tolerance.value;
+      const product = this.product.value;
+      const dose = calculateDose(weight, sex, tolerance);
+      let resultText = `<b>Dose consigliata:</b> ${dose}mg THC<br>`;
       if(product === "classico") {
-        const mgPerPz = 200;
-        const gPerPz = 10;
-        let cioc = dose/mgPerPz;
-        let ciocTxt = (cioc<1) ? `${Math.round(cioc*10)/10}` : `${Math.floor(cioc)}`;
-        let gr = Math.round((dose/mgPerPz)*gPerPz*10)/10;
-        resultText = `<b>Dose consigliata:</b> ${dose}mg THC<br>`;
-        if (cioc < 1) {
-          resultText += `<span>≈ ${Math.round(cioc*2)/2} cioccolatino (${gr}g di cioccolato)</span>`;
-        } else {
-          resultText += `<span>${ciocTxt} cioccolatino/i (${gr}g di cioccolato)</span>`;
-        }
+        resultText += `<span>${getCioccolatiniString(dose)}</span>`;
       } else if(product === "syrup") {
-        // Syrup: 1000mg in 150ml => 1ml = 6.7mg
-        let mgPerMl = 1000/150;
-        let ml = Math.round((dose/mgPerMl)*10)/10;
-        resultText = `<b>Dose consigliata:</b> ${dose}mg THC<br>`;
-        resultText += `<span>≈ ${ml}ml di syrup</span>`;
+        resultText += `<span>${getSyrupString(dose)}</span>`;
+      }
+      if (dose >= 40 && dose < 80) {
+        resultText += `<div style="color:#ffcf00;margin-top:7px;font-size:0.93em;">Dose elevata: effetti forti, procedi con cautela.</div>`;
+      }
+      if (dose >= 80) {
+        resultText += `<div style="color:#ff3333;margin-top:7px;font-size:0.98em;font-weight:600;">Dose MOLTO elevata: rischio di effetti indesiderati, solo per utenti molto esperti!</div>`;
       }
       document.getElementById('dose-calc-result').innerHTML = resultText;
+
+      // Slider parte dal valore calcolato
+      var sliderSection = document.getElementById("slider-effects-section");
+      var slider = document.getElementById("slider-dose");
+      var valueLabel = document.getElementById("slider-dose-value");
+      var effectText = document.getElementById("slider-effect-text");
+      slider.value = dose;
+      valueLabel.textContent = dose;
+      effectText.textContent = getEffectPhrase(dose);
+      sliderSection.style.display = "block";
+    });
+
+    document.getElementById("slider-dose").addEventListener("input", function() {
+      var dose = parseInt(this.value);
+      document.getElementById("slider-dose-value").textContent = dose;
+      document.getElementById("slider-effect-text").textContent = getEffectPhrase(dose);
     });
   </script>
 </body>
