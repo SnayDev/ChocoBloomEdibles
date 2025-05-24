@@ -19,4 +19,80 @@ body {
 
 @keyframes psychedelicFlow {
   0% { background-position: 0% 50%; }
-  50
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  border-radius: 20px;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 5px #ffcc00); }
+  100% { filter: drop-shadow(0 0 15px #ffcc00); }
+}
+
+.brand-name {
+  font-size: 3em;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.cta-button {
+  padding: 12px 24px;
+  background: #ffcc00;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ffaa00;
+}
+
+section#products {
+  padding: 50px 20px;
+  background: #2e003e;
+  text-align: center;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.product-card {
+  background: #4d004d;
+  padding: 20px;
+  border-radius: 12px;
+  width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #999;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+}
