@@ -456,3 +456,74 @@ footer {
   }
 }
 
+/* Top bar with logo */
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  background: rgba(10, 0, 20, 0.9);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-top img {
+  height: 40px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+}
+
+/* Sidebar menu (mobile only) */
+.side-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 200px;
+  background: rgba(10, 0, 20, 0.95);
+  padding: 20px;
+  z-index: 999;
+  border-top-right-radius: 12px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 15px;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.side-menu.show {
+  display: block;
+}
+
+/* Responsive attivo su mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
