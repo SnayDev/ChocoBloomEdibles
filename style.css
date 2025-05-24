@@ -7,7 +7,7 @@ body {
 }
 
 .hero {
-  background: url("ChocoBloomEdibles/img/hero-bg.png") no-repeat center center;
+  background: url("img/hero-bg.png") no-repeat center center;
   background-size: cover;
   height: 100vh;
   display: flex;
