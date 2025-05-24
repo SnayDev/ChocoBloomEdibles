@@ -855,3 +855,66 @@ a:hover {
   background: #d800b6;
   box-shadow: 0 0 36px #ff00cc;
 }
+/* Stile pagina prodotto dedicato (classico.html e simili) */
+.product-dedicated {
+  background: #070014;
+  padding: 65px 0 60px 0;
+  min-height: 100vh;
+}
+.prod-dedicated-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 54px;
+  max-width: 980px;
+  margin: 0 auto 44px auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.prod-img img {
+  width: 226px;
+  max-width: 50vw;
+  border-radius: 22px;
+  box-shadow: 0 0 32px #ff00cc55;
+}
+.prod-info {
+  flex: 1;
+  min-width: 220px;
+}
+.prod-info h1 {
+  color: #ff00cc;
+  font-size: 2.1em;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.prod-info ul {
+  color: #fff;
+  font-size: 1.1em;
+  margin: 0 0 18px 22px;
+}
+.prod-note {
+  margin-top: 18px;
+  font-size: 0.98em;
+  color: #ff00cc;
+  background: #180022;
+  padding: 12px 18px;
+  border-radius: 14px;
+  max-width: 420px;
+}
+.prod-calculator {
+  max-width: 420px;
+  margin: 0 auto;
+  background: #180022;
+  border-radius: 22px;
+  box-shadow: 0 0 18px #ff00cc22;
+  padding: 30px 30px 20px 30px;
+}
+.prod-calculator h2 {
+  text-align: center;
+  color: #ff00cc;
+  font-size: 1.3em;
+  margin-bottom: 18px;
+}
+@media (max-width: 800px) {
+  .prod-dedicated-grid { flex-direction: column; gap: 24px; }
+  .prod-img img { width: 90vw; max-width: 340px; }
+}
