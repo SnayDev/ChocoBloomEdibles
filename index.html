@@ -35,20 +35,21 @@
     <nav class="navbar-inner">
       <div class="navbar-logo-center">
         <a href="index.html">
-          <img src="img/mascotte.png" alt="Mascotte navbar" />
+          <img id="mascotte-navbar" src="img/mascotte.png" alt="Mascotte navbar" />
         </a>
       </div>
       <ul class="navbar-menu">
         <li><a href="prodotti.html">PRODOTTI</a></li>
         <li><a href="#about">VISIONE</a></li>
+        <li><a href="#timeline">STORIA</a></li>
         <li><a href="#footer">CONTATTI</a></li>
       </ul>
     </nav>
-    <!-- Side menu per mobile -->
     <nav class="side-menu" id="sideMenu">
       <ul>
         <li><a href="prodotti.html">PRODOTTI</a></li>
         <li><a href="#about">VISIONE</a></li>
+        <li><a href="#timeline">STORIA</a></li>
         <li><a href="#footer">CONTATTI</a></li>
       </ul>
     </nav>
@@ -60,34 +61,177 @@
       <h1>CHOCOBLOOM</h1>
       <p class="hero-desc">Premium Edibles. 1000mg. Made to elevate.</p>
       <a href="prodotti.html" class="cta glowing">SCOPRI I PRODOTTI</a>
+      <!-- Animazione "bloom" (placeholder SVG) -->
+      <div class="bloom-animation"></div>
     </div>
   </section>
 
-  <!-- PRODOTTI -->
-  <section id="products" class="products-section fadein">
-    <h2>I Nostri Edibles</h2>
-    <div class="products-grid">
-      <div class="product-card fadein">
-        <img src="img/prodotto1.png" alt="ChocoBomb 1000mg" />
-        <div class="product-info">
-          <h3>ChocoBomb 1000mg</h3>
-          <p>5x 200mg · Fondente · Distillato D9</p>
+  <!-- SOCIAL PROOF / COUNTDOWN -->
+  <section class="social-proof fadein">
+    <div class="badge-live">
+      <span id="orders-today">12</span> nuovi ordini oggi · 
+      <span id="drop-timer">Nuovo drop tra 03:12:45</span>
+    </div>
+  </section>
+
+  <!-- MOODBOARD SENSORIALE -->
+  <section class="moodboard-section fadein">
+    <h2>Moodboard Sensoriale</h2>
+    <div class="moodboard-grid">
+      <div class="moodboard-item"><img src="img/mood1.jpg" alt="Mood 1"><span>Avvolgente</span></div>
+      <div class="moodboard-item"><img src="img/mood2.jpg" alt="Mood 2"><span>Fiorito</span></div>
+      <div class="moodboard-item"><img src="img/mood3.jpg" alt="Mood 3"><span>Intenso</span></div>
+      <div class="moodboard-item"><img src="img/mood4.jpg" alt="Mood 4"><span>Magico</span></div>
+    </div>
+    <div class="moodboard-audio">
+      <audio controls>
+        <source src="audio/chocobloom-ambiente.mp3" type="audio/mp3" />
+        Il tuo browser non supporta l’audio.
+      </audio>
+      <span>Ascolta la nostra colonna sonora sensoriale!</span>
+    </div>
+  </section>
+
+  <!-- STORYTELLING / TIMELINE -->
+  <section id="timeline" class="timeline-section fadein">
+    <h2>La Storia di ChocoBloom</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Origine</h3>
+          <p>Dalla pianta al chicco: selezioniamo solo cacao sudamericano e distillati californiani certificati.</p>
         </div>
       </div>
-      <div class="product-card fadein">
-        <img src="img/prodotto2.png" alt="ChocoMicro 500mg" />
-        <div class="product-info">
-          <h3>ChocoMicro 500mg</h3>
-          <p>5x 100mg · Nocciola · Estratto Hybrid</p>
+      <div class="timeline-step">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Alchimia</h3>
+          <p>La magia artigianale italiana incontra la precisione della cannabis moderna: nasce ChocoBloom.</p>
         </div>
       </div>
-      <div class="product-card fadein">
-        <img src="img/prodotto3.png" alt="ChocoWhite 300mg" />
-        <div class="product-info">
-          <h3>ChocoWhite 300mg</h3>
-          <p>3x 100mg · Bianco · Distillato D9</p>
+      <div class="timeline-step">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Esperienza</h3>
+          <p>Un viaggio sensoriale unico, potente e raffinato. Edibles, elevati.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTI E CERTIFICAZIONI -->
+  <section class="ingredienti-section fadein">
+    <h2>Ingredienti Scelti & Certificazioni</h2>
+    <div class="ingredienti-list">
+      <div class="ingrediente">
+        <img src="img/cacao.png" alt="Cacao premium">
+        <span>Cacao Criollo BIO</span>
+      </div>
+      <div class="ingrediente">
+        <img src="img/distillato.png" alt="Distillato D9">
+        <span>Distillato D9 Californiano</span>
+      </div>
+      <div class="ingrediente">
+        <img src="img/vaniglia.png" alt="Vaniglia naturale">
+        <span>Vaniglia Bourbon Naturale</span>
+      </div>
+      <div class="badge-cert">
+        <img src="img/badge-lab.png" alt="Lab tested">
+        <span>Lab Tested</span>
+      </div>
+      <div class="badge-cert">
+        <img src="img/badge-bio.png" alt="Biologico">
+        <span>Biologico</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz-section fadein">
+    <h2>Quale ChocoBloom fa per te?</h2>
+    <form id="chocobloom-quiz">
+      <div class="quiz-q">
+        <label>Che effetto cerchi?</label><br>
+        <select name="effect">
+          <option value="relax">Relax profondo</option>
+          <option value="creativo">Creatività</option>
+          <option value="social">Socialità</option>
+          <option value="intenso">Viaggio intenso</option>
+        </select>
+      </div>
+      <div class="quiz-q">
+        <label>Preferisci:</label><br>
+        <select name="flavor">
+          <option value="fondente">Fondente</option>
+          <option value="nocciola">Nocciola</option>
+          <option value="bianco">Bianco</option>
+        </select>
+      </div>
+      <button type="submit" class="cta">Scopri il tuo ChocoBloom</button>
+    </form>
+    <div id="quiz-result"></div>
+  </section>
+
+  <!-- DOSE CALCULATOR -->
+  <section class="dose-section fadein">
+    <h2>Calcola la tua dose ideale</h2>
+    <div class="dose-calc">
+      <label for="dose-range">Potenza desiderata (mg):</label><br>
+      <input type="range" min="50" max="1000" value="200" id="dose-range" step="50" />
+      <span id="dose-value">200mg</span>
+      <div class="dose-desc" id="dose-desc">Effetto: Chill preciso, perfetto per iniziare.</div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial-section fadein">
+    <h2>Cosa dicono di noi</h2>
+    <div class="testimonial-list">
+      <div class="testimonial">
+        <p>“Mai provato nulla di simile! Sapore e viaggio perfetti.”</p>
+        <span>– Luca, Milano</span>
+      </div>
+      <div class="testimonial">
+        <p>“L’effetto è preciso, senza sorprese, e il gusto è top!”</p>
+        <span>– Sara, Roma</span>
+      </div>
+      <div class="testimonial">
+        <p>“Un’esperienza da ripetere. La qualità si sente.”</p>
+        <span>– Dario, Firenze</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section fadein">
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Come viene prodotto ChocoBloom?</button>
+        <div class="faq-a">Ogni cioccolatino è realizzato artigianalmente in piccoli lotti, con ingredienti selezionati e distillato testato in laboratorio.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quanto dura l’effetto?</button>
+        <div class="faq-a">L’effetto dura tra 4 e 8 ore, dipende dalla tolleranza personale e dalla dose scelta.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">È legale in Italia?</button>
+        <div class="faq-a">ChocoBloom è venduto solo dove consentito dalla legge. Verifica sempre la normativa locale.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RITUALE -->
+  <section class="rituale-section fadein">
+    <h2>Il Rituale ChocoBloom</h2>
+    <div class="rituale-content">
+      <p>
+        Ritagliati un momento tutto tuo.<br>
+        Scegli la dose, ascolta la nostra playlist, gusta lentamente.<br>
+        Lasciati portare lontano: <span class="accent">edibles, elevati.</span>
+      </p>
+      <a href="#moodboard" class="cta">Inizia il rituale</a>
     </div>
   </section>
 
@@ -111,8 +255,77 @@
     <div class="footer-copy">
       © 2025 ChocoBloom. Prodotto in California – Ideato in Italia.
     </div>
+    <div class="footer-accessibility">
+      <small>Accessibilità: testo ad alto contrasto, navigazione da tastiera, immagini con alt, audio descritto. Sito ottimizzato per mobile e desktop.</small>
+    </div>
   </footer>
 
   <script src="scroll.js"></script>
+  <!-- Script per quiz, dose calculator, faq animate, social proof, mascotte, countdown -->
+  <script>
+    // QUIZ
+    document.getElementById("chocobloom-quiz").onsubmit = function(e) {
+      e.preventDefault();
+      var effect = this.effect.value;
+      var flavor = this.flavor.value;
+      var result = "";
+      if(effect === "relax" && flavor === "fondente") result = "ChocoBomb 1000mg";
+      else if(effect === "creativo" && flavor === "nocciola") result = "ChocoMicro 500mg";
+      else if(effect === "intenso") result = "ChocoBomb 1000mg";
+      else if(flavor === "bianco") result = "ChocoWhite 300mg";
+      else result = "ChocoBloom Classico";
+      document.getElementById("quiz-result").innerHTML = "<b>Consigliato:</b> " + result + "!";
+    }
+
+    // DOSE CALCULATOR
+    var doseRange = document.getElementById("dose-range");
+    var doseValue = document.getElementById("dose-value");
+    var doseDesc = document.getElementById("dose-desc");
+    doseRange.oninput = function() {
+      doseValue.textContent = this.value + "mg";
+      if(this.value < 150) doseDesc.textContent = "Effetto: Leggero, adatto a principianti.";
+      else if(this.value < 400) doseDesc.textContent = "Effetto: Chill preciso, perfetto per iniziare.";
+      else if(this.value < 700) doseDesc.textContent = "Effetto: Viaggio sensoriale intenso, solo per esperti.";
+      else doseDesc.textContent = "Effetto: Esperienza molto intensa, dosare con cautela!";
+    }
+
+    // FAQ animate
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.onclick = function() {
+        this.classList.toggle("open");
+        var ans = this.nextElementSibling;
+        ans.style.display = ans.style.display === "block" ? "none" : "block";
+      }
+    });
+
+    // Social proof animato (dummy increment)
+    setInterval(() => {
+      let el = document.getElementById("orders-today");
+      let n = parseInt(el.textContent);
+      if(n < 99) el.textContent = n + Math.round(Math.random());
+    }, 8000);
+
+    // Countdown drop (dummy, parte da 3h12m45s)
+    let dropSec = 3*3600 + 12*60 + 45;
+    setInterval(() => {
+      if(dropSec <= 0) return;
+      dropSec--;
+      let h = Math.floor(dropSec/3600);
+      let m = Math.floor((dropSec%3600)/60);
+      let s = dropSec%60;
+      document.getElementById("drop-timer").textContent = "Nuovo drop tra " + 
+        (h<10?"0":"") + h + ":" + (m<10?"0":"") + m + ":" + (s<10?"0":"") + s;
+    }, 1000);
+
+    // Mascotte animata (hover effect di esempio)
+    document.getElementById("mascotte-navbar").onmouseover = function() {
+      this.style.transform = "scale(1.12) rotate(-8deg)";
+      this.style.filter = "drop-shadow(0 0 32px #ff00cc) drop-shadow(0 0 80px #fff)";
+    }
+    document.getElementById("mascotte-navbar").onmouseleave = function() {
+      this.style.transform = "";
+      this.style.filter = "";
+    }
+  </script>
 </body>
 </html>
