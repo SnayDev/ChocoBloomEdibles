@@ -75,64 +75,29 @@
     <p>© 2025 ChocoBloom. Prodotto in California – Ideato in Italia.</p>
   </footer>
 
-<script src="scroll.js">
-function toggleMenu() {
-  const nav = document.querySelector('.navbar nav ul');
-  nav.classList.toggle('show');
-}
-</script>
-<script src="scroll.js">
-function toggleMenu() {
-  const nav = document.querySelector('.navbar nav ul');
-  nav.classList.toggle('show');
-}
-</script>
+<script src="scroll.js"></script>
 <script>
-  // Splash screen + age gate
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const splash = document.getElementById('splash-screen');
+    const gate = document.getElementById('age-gate');
+
     setTimeout(() => {
-      document.getElementById('splash-screen').style.opacity = '0';
+      splash.classList.add("fade-out");
+
       setTimeout(() => {
-        document.getElementById('splash-screen').style.display = 'none';
-        document.getElementById('age-gate').style.display = 'flex';
+        splash.style.display = 'none';
+        gate.style.display = 'flex';
       }, 1000);
     }, 1500);
-  };
+  });
 
-  // Splash + gate fixes
-
-window.onload = function () {
-  const splash = document.getElementById('splash-screen');
-  const gate = document.getElementById('age-gate');
-  setTimeout(() => {
-    splash.classList.add("fade-out");
-    setTimeout(() => {
-      splash.style.display = 'none';
-      gate.style.display = 'flex';
-    }, 1000);
-  }, 1500);
-};
-
-function enterSite(confirmed) {
-  if (confirmed) {
-    document.getElementById('age-gate').style.display = 'none';
-  } else {
-    document.body.innerHTML = "<h2 style='color: white; text-align:center; margin-top:20%'>Accesso negato</h2>";
-  }
-}
-
-function enterSite_legacy(confirmed) {
+  function enterSite(confirmed) {
     if (confirmed) {
       document.getElementById('age-gate').style.display = 'none';
     } else {
       document.body.innerHTML = "<h2 style='color: white; text-align:center; margin-top:20%'>Accesso negato</h2>";
     }
   }
-
-function toggleMenu() {
-  const nav = document.querySelector('.navbar nav ul');
-  nav.classList.toggle('show');
-}
 </script>
 </body>
 </html>
