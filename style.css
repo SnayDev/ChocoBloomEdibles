@@ -744,3 +744,19 @@ a:hover {
   font-size: 0.85em;
   color: #aaa;
 }
+/* Glow sulle card anche su hover da desktop */
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover,
+  .product-card.active {
+    z-index: 10;
+    transform: scale(1.1);
+    box-shadow: 0 0 54px 22px #d800b6, 0 0 24px #ff00cc;
+  }
+}
+
+/* Mantieni il glow su .active così funziona anche su mobile/tap */
+.product-card.active {
+  z-index: 10;
+  transform: scale(1.1);
+  box-shadow: 0 0 54px 22px #d800b6, 0 0 24px #ff00cc;
+}
