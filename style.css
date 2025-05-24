@@ -7,7 +7,6 @@ body {
   font-size: 1.12em;
   letter-spacing: 0.01em;
 }
-
 a {
   color: #fff;
   text-decoration: none;
@@ -16,7 +15,6 @@ a {
 a:hover {
   color: #ff00cc;
 }
-
 .navbar {
   width: 100vw;
   position: fixed;
@@ -64,8 +62,6 @@ a:hover {
   50% { filter: drop-shadow(0 0 36px #ff00cc) drop-shadow(0 0 80px #ff3399) drop-shadow(0 0 160px #ff00cc);}
   100% { filter: drop-shadow(0 0 18px #ff00cc) drop-shadow(0 0 36px #ff3399) drop-shadow(0 0 60px #ff00cc);}
 }
-
-/* Menu desktop */
 .navbar-menu {
   display: flex;
   list-style: none;
@@ -101,7 +97,6 @@ a:hover {
 .navbar-menu li a:hover::after {
   width: 100%;
 }
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -123,7 +118,6 @@ a:hover {
   border-radius: 2px;
   transition: 0.3s;
 }
-
 .side-menu {
   display: none;
   position: fixed;
@@ -160,7 +154,6 @@ a:hover {
 .side-menu.show {
   display: block;
 }
-
 @media (max-width: 1050px) {
   .navbar-inner {
     max-width: 99vw;
@@ -181,7 +174,6 @@ a:hover {
     height: 48px;
   }
 }
-
 .hero {
   min-height: 100vh;
   display: flex;
@@ -243,7 +235,6 @@ a:hover {
   background: #cc0099;
   box-shadow: 0 0 64px #ff00cc;
 }
-
 .bloom-animation {
   margin: 36px auto 0 auto;
   width: 110px;
@@ -258,13 +249,10 @@ a:hover {
   40% { opacity: 0.95; }
   100% { opacity: 0.7; transform: scale(1.13);}
 }
-
 @media (max-width: 700px) {
   .hero h1 { font-size: 2.2em; }
   .hero-desc { font-size: 1em; }
 }
-
-/* SOCIAL PROOF E COUNTDOWN */
 .social-proof {
   background: #0a0014;
   text-align: center;
@@ -285,8 +273,6 @@ a:hover {
   color: #ff00cc;
   font-weight: 700;
 }
-
-/* MOODBOARD */
 .moodboard-section {
   padding: 72px 0 48px 0;
   background: #090013;
@@ -313,6 +299,9 @@ a:hover {
   width: 100%;
   border-radius: 20px;
   box-shadow: 0 0 18px #ff00cc33;
+  border: 2px solid #ff00cc33;
+  object-fit: contain;
+  background: #fff;
 }
 .moodboard-item span {
   display: block;
@@ -332,13 +321,10 @@ a:hover {
   font-size: 0.97em;
   margin-left: 8px;
 }
-
 @media (max-width: 600px) {
   .moodboard-grid { gap: 14px; }
   .moodboard-item { width: 80px; }
 }
-
-/* TIMELINE */
 .timeline-section {
   padding: 70px 0 42px 0;
   background: #070707;
@@ -382,8 +368,6 @@ a:hover {
   opacity: 0.87;
   font-size: 1.05em;
 }
-
-/* INGREDIENTI E BADGE */
 .ingredienti-section {
   padding: 60px 0 48px 0;
   background: #0a0014;
@@ -417,6 +401,10 @@ a:hover {
   height: 48px;
   margin-bottom: 12px;
   filter: drop-shadow(0 0 8px #ff00cc22);
+  border: 2px solid #ff00cc33;
+  background: #fff;
+  object-fit: contain;
+  border-radius: 10px;
 }
 .ingrediente span, .badge-cert span {
   color: #ff00cc;
@@ -424,8 +412,6 @@ a:hover {
   letter-spacing: 0.07em;
   font-size: 1.01em;
 }
-
-/* QUIZ */
 .quiz-section {
   padding: 70px 0 40px 0;
   text-align: center;
@@ -470,8 +456,6 @@ a:hover {
   color: #ff00cc;
   font-weight: 600;
 }
-
-/* DOSE CALCULATOR */
 .dose-section {
   padding: 64px 0 44px 0;
   background: #090013;
@@ -505,45 +489,6 @@ a:hover {
   color: #fff;
   font-size: 1.05em;
 }
-
-/* TESTIMONIAL */
-.testimonial-section {
-  padding: 70px 0 38px 0;
-  background: #0a0014;
-  text-align: center;
-}
-.testimonial-section h2 {
-  font-size: 2em;
-  margin-bottom: 25px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-.testimonial-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 34px;
-}
-.testimonial {
-  background: #170022;
-  border-radius: 20px;
-  box-shadow: 0 0 16px #ff00cc22;
-  padding: 22px 32px;
-  max-width: 320px;
-  text-align: left;
-}
-.testimonial p {
-  margin: 0 0 8px 0;
-  font-style: italic;
-  color: #fff;
-}
-.testimonial span {
-  color: #ff00cc;
-  font-size: 0.97em;
-  font-weight: 500;
-}
-
-/* FAQ */
 .faq-section {
   padding: 68px 0 30px 0;
   background: #070707;
@@ -590,8 +535,6 @@ a:hover {
   font-size: 1em;
   background: #180028;
 }
-
-/* RITUALE */
 .rituale-section {
   padding: 70px 0 55px 0;
   background: #0a0014;
@@ -614,8 +557,6 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.10em;
 }
-
-/* ABOUT */
 .about-section {
   padding: 100px 0;
   background: #070707;
@@ -640,8 +581,6 @@ a:hover {
   letter-spacing: 0.10em;
   font-weight: 600;
 }
-
-/* FOOTER */
 .footer {
   background: #070707;
   color: #bbb;
@@ -671,8 +610,6 @@ a:hover {
   font-size: 0.85em;
   color: #aaa;
 }
-
-/* Animazioni fadein */
 .fadein {
   opacity: 0;
   transform: translateY(30px);
@@ -682,8 +619,6 @@ a:hover {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Splash screen */
 #splash-screen {
   position: fixed;
   top: 0; left: 0;
@@ -725,8 +660,6 @@ a:hover {
   opacity: 0;
   transition: opacity 1s;
 }
-
-/* Age gate popup */
 .age-gate {
   position: fixed;
   top: 0; left: 0;
@@ -763,11 +696,70 @@ a:hover {
 .age-popup button:hover {
   background: #cc0099;
 }
-
 ::-webkit-scrollbar {
   width: 12px;
 }
 ::-webkit-scrollbar-thumb {
   background: #181818;
   border-radius: 6px;
+}
+.products-section {
+  padding: 92px 0 50px 0;
+  background: #070707;
+  text-align: center;
+}
+.products-section h2 {
+  font-size: 2em;
+  margin-bottom: 35px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 38px;
+}
+.product-card {
+  background: #170022;
+  border-radius: 20px;
+  box-shadow: 0 0 18px #ff00cc22;
+  padding: 34px 32px 22px 32px;
+  text-align: center;
+  width: 290px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 18px;
+  border-radius: 13px;
+  border: 2px solid #ff00cc33;
+  object-fit: contain;
+  background: #fff;
+}
+.product-info h3 {
+  font-size: 1.18em;
+  color: #ff00cc;
+  margin-bottom: 9px;
+  font-weight: 600;
+}
+.product-info p {
+  margin: 0;
+  color: #fff;
+  opacity: 0.89;
+  font-size: 1.01em;
+  font-weight: 400;
+}
+@media (max-width: 1000px) {
+  .products-grid { gap: 22px; }
+  .product-card { width: 90vw; max-width: 320px; }
+}
+@media (max-width: 600px) {
+  .products-section { padding: 84px 0 35px 0;}
+  .products-grid { flex-direction: column; align-items: center; }
+  .product-card { width: 95vw; max-width: 340px; }
 }
