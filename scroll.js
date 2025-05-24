@@ -2,7 +2,6 @@
 function handleFadeIn() {
   const faders = document.querySelectorAll('.fadein');
   const windowBottom = window.scrollY + window.innerHeight;
-
   faders.forEach(el => {
     const rect = el.getBoundingClientRect();
     const elTop = rect.top + window.scrollY;
@@ -20,7 +19,6 @@ function toggleMenu() {
 // AGE GATE PERSISTENTE
 function showAgeGateIfNeeded() {
   const ageGate = document.getElementById('age-gate');
-  // se già accettato, non mostrare
   if (localStorage.getItem('chocobloom_age_ok') === 'yes') {
     ageGate.style.display = 'none';
   } else {
@@ -51,7 +49,6 @@ function splashSequence() {
 
 // LOGO CLICK = HOME o age gate
 function logoClickHandler(e) {
-  // Se c'è age gate già accettato, vai alla home senza popup
   if (localStorage.getItem('chocobloom_age_ok') === 'yes') {
     window.location.href = 'index.html';
   } else {
@@ -62,20 +59,15 @@ function logoClickHandler(e) {
 
 // INIT
 document.addEventListener("DOMContentLoaded", function () {
-  // Splash + age gate
   if (document.getElementById('splash-screen')) splashSequence();
-
-  // Fade in su scroll
   handleFadeIn();
   window.addEventListener('scroll', handleFadeIn);
   window.addEventListener('resize', handleFadeIn);
 
-  // Logo click
   const logo = document.querySelector('.navbar-logo-center a');
   if (logo) {
     logo.addEventListener('click', logoClickHandler);
   }
-  // Hamburger per mobile (già globale)
   window.toggleMenu = toggleMenu;
   window.enterSite = enterSite;
 });
