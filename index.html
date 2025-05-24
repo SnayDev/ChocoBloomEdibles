@@ -267,6 +267,7 @@
         const weight = parseFloat(this.weight.value);
         const sex = this.sex.value;
         const tolerance = this.tolerance.value;
+        const product = this.product.value;
         let dose = weight * 0.2;
         if(sex === 'f') dose *= 0.85;
         if(sex === 'x') dose *= 0.93;
@@ -277,13 +278,26 @@
         dose = Math.round(dose);
         if(dose < 5) dose = 5;
         if(dose > 80) dose = 80;
-        let level = '';
-        if(dose <= 8) level = 'Microdose: effetto percepibile e leggero.';
-        else if(dose <= 15) level = 'Dose bassa: effetto soft, adatto a principianti.';
-        else if(dose <= 30) level = 'Dose media: esperienza intensa per la maggior parte degli utenti.';
-        else level = 'Dose alta: solo per utenti con alta tolleranza.';
-        document.getElementById('dose-calc-result').innerHTML =
-          `<b>Dose consigliata:</b> ${dose}mg THC<br><span>${level}</span>`;
+        let resultText = `<b>Dose consigliata:</b> ${dose}mg THC<br>`;
+        if(product==="classico") {
+          const mgPerPz = 200;
+          const gPerPz = 10;
+          let cioc = dose/mgPerPz;
+          let ciocTxt = (cioc<1) ? `${Math.round(cioc*10)/10}` : `${Math.floor(cioc)}`;
+          let gr = Math.round((dose/mgPerPz)*gPerPz*10)/10;
+          if (cioc < 1) {
+            resultText += `<span>≈ ${Math.round(cioc*2)/2} cioccolatino (${gr}g di cioccolato)</span>`;
+          } else {
+            resultText += `<span>${ciocTxt} cioccolatino/i (${gr}g di cioccolato)</span>`;
+          }
+        }
+        if(product==="syrup") {
+          const mgPerMl = 1000/150;
+          let ml = dose/mgPerMl;
+          let mlDisp = Math.round(ml*10)/10;
+          resultText += `<span>≈ ${mlDisp}ml di syrup</span>`;
+        }
+        document.getElementById('dose-calc-result').innerHTML = resultText;
       });
     });
 
