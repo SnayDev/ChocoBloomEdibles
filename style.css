@@ -256,6 +256,10 @@ footer {
   color: #fff;
   font-size: 2em;
 }
+#splash-screen.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
 
 /* Age gate popup */
 .age-gate {
