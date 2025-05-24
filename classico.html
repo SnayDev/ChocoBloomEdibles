@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChocoBloom Classico 1000mg</title>
+  <title>ChocoBloom Classico | ChocoBloom</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
+    <div></div><div></div><div></div>
+  </div>
   <header class="navbar">
     <nav class="navbar-inner">
       <div class="navbar-logo-center">
@@ -22,54 +25,77 @@
         <li><a href="index.html#footer">CONTATTI</a></li>
       </ul>
     </nav>
+    <nav class="side-menu" id="sideMenu">
+      <ul>
+        <li><a href="prodotti.html">PRODOTTI</a></li>
+        <li><a href="index.html#about">VISIONE</a></li>
+        <li><a href="index.html#timeline">STORIA</a></li>
+        <li><a href="index.html#footer">CONTATTI</a></li>
+      </ul>
+    </nav>
   </header>
   <main>
+    <!-- TITOLO GLOWING -->
     <section class="product-dedicated fadein">
       <div class="prod-dedicated-grid">
         <div class="prod-img">
           <img src="img/prodotto_classico.png" alt="ChocoBloom Classico 1000mg" />
         </div>
         <div class="prod-info">
-          <h1>ChocoBloom Classico 1000mg</h1>
+          <h1 class="chocobloom-glow">CHOCOBLOOM CLASSICO</h1>
           <ul>
-            <li>5 cioccolatini artigianali</li>
+            <li>5 pezzi per confezione</li>
             <li>200mg THC per pezzo</li>
-            <li>10g cioccolato per pezzo</li>
-            <li>Cacao Criollo BIO, Distillato D9 Californiano, Vaniglia Bourbon Naturale</li>
-            <li>Prodotto in California</li>
+            <li>10g cioccolato artigianale a pezzo</li>
+            <li>Distillato D9 Californiano</li>
+            <li>Cacao Criollo BIO</li>
           </ul>
           <div class="prod-note">
-            <b>Nota:</b> Non acquistabile online. Consumo privato dove legalmente consentito.
+            <b>Premium Edibles. 1000mg. Made to elevate.</b><br>
+            Un viaggio sensoriale unico, dosato al milligrammo.
           </div>
         </div>
       </div>
-      <div class="prod-calculator">
-        <h2>Calcola la dose ideale per te</h2>
-        <form id="prod-dedicated-calc" class="dose-calc-advanced">
-          <label for="ded-sex">Sesso:</label>
-          <select id="ded-sex" name="sex" required>
-            <option value="m">Maschio</option>
-            <option value="f">Femmina</option>
-            <option value="x">Altro</option>
-          </select>
-          <label for="ded-weight">Peso (kg):</label>
-          <input type="number" id="ded-weight" name="weight" min="35" max="180" required>
-          <label for="ded-tolerance">Consumo THC:</label>
-          <select id="ded-tolerance" name="tolerance" required>
-            <option value="none">Mai provato</option>
-            <option value="low">Saltuario</option>
-            <option value="med">Regolare</option>
-            <option value="high">Alta tolleranza</option>
-          </select>
-          <button type="submit" class="cta">Calcola dose</button>
-        </form>
-        <div id="ded-calc-result" class="dose-calc-result"></div>
-        <div class="dose-calc-safety">
-          <small>
-            Attenzione: i risultati sono solo indicativi. Inizia sempre con la dose minima possibile.<br>
-            <b>Mai guidare o svolgere attività a rischio dopo l’assunzione.</b>
-          </small>
-        </div>
+    </section>
+
+    <!-- MOODBOARD SOTTO HERO/INFO -->
+    <section class="moodboard-section fadein">
+      <h2>Moodboard Sensoriale</h2>
+      <div class="moodboard-grid">
+        <div class="moodboard-item"><img src="img/sensoriale.png" alt="Avvolgente"><span>Avvolgente</span></div>
+        <div class="moodboard-item"><img src="img/mood2.png" alt="Fiorito"><span>Fiorito</span></div>
+        <div class="moodboard-item"><img src="img/mood3.png" alt="Intenso"><span>Intenso</span></div>
+        <div class="moodboard-item"><img src="img/mood4.png" alt="Magico"><span>Magico</span></div>
+      </div>
+    </section>
+
+    <!-- CALCOLATORE AVANZATO -->
+    <section class="dose-section fadein">
+      <h2>Calcola la tua dose ideale</h2>
+      <form id="dose-calc-form-classico" class="dose-calc-advanced">
+        <label for="dose-weight">Peso (kg):</label>
+        <input type="number" id="dose-weight" name="weight" min="35" max="180" required>
+        <label for="dose-sex">Sesso:</label>
+        <select id="dose-sex" name="sex" required>
+          <option value="m">Maschio</option>
+          <option value="f">Femmina</option>
+          <option value="x">Altro</option>
+        </select>
+        <label for="dose-tolerance">Consumo THC:</label>
+        <select id="dose-tolerance" name="tolerance" required>
+          <option value="none">Mai provato</option>
+          <option value="low">Saltuario</option>
+          <option value="med">Regolare</option>
+          <option value="high">Alta tolleranza</option>
+        </select>
+        <button type="submit" class="cta">Calcola dose</button>
+      </form>
+      <div id="dose-calc-result-classico" class="dose-calc-result"></div>
+      <div class="dose-calc-safety">
+        <small>
+          Attenzione: i risultati sono solo indicativi. Inizia sempre con la dose minima possibile. Gli effetti possono durare anche 8 ore.<br>
+          <b>Mai guidare o svolgere attività a rischio dopo l’assunzione.</b>
+        </small>
       </div>
     </section>
   </main>
@@ -87,35 +113,38 @@
     </div>
   </footer>
   <script>
-    document.getElementById('prod-dedicated-calc').onsubmit = function(e){
+    function toggleMenu() {
+      var menu = document.getElementById("sideMenu");
+      menu.classList.toggle("show");
+    }
+    document.getElementById('dose-calc-form-classico').addEventListener('submit', function(e){
       e.preventDefault();
       const weight = parseFloat(this.weight.value);
       const sex = this.sex.value;
       const tolerance = this.tolerance.value;
-      let baseDose = weight * 0.2;
-      if(sex === 'f') baseDose *= 0.85;
-      if(sex === 'x') baseDose *= 0.93;
-      if(tolerance === 'none') baseDose *= 0.5;
-      else if(tolerance === 'low') baseDose *= 0.75;
-      else if(tolerance === 'med') baseDose *= 1;
-      else if(tolerance === 'high') baseDose *= 2;
-
-      // Ogni cioccolatino = 200mg, min dose reale = 1/4 cioè 50mg (2.5g)
-      let dose = Math.round(baseDose / 50) * 50;
-      let resultText = "";
-      if (dose < 50) {
-        dose = 50;
-        resultText = `Dose minima realistica: 1/4 di cioccolatino (≈50mg THC, 2.5g di cioccolato)`;
+      let dose = weight * 0.2;
+      if(sex === 'f') dose *= 0.85;
+      if(sex === 'x') dose *= 0.93;
+      if(tolerance === 'none') dose *= 0.5;
+      else if(tolerance === 'low') dose *= 0.75;
+      else if(tolerance === 'med') dose *= 1;
+      else if(tolerance === 'high') dose *= 2;
+      dose = Math.round(dose);
+      if(dose < 5) dose = 5;
+      if(dose > 80) dose = 80;
+      const mgPerPz = 200;
+      const gPerPz = 10;
+      let cioc = dose/mgPerPz;
+      let ciocTxt = (cioc<1) ? `${Math.round(cioc*10)/10}` : `${Math.floor(cioc)}`;
+      let gr = Math.round((dose/mgPerPz)*gPerPz*10)/10;
+      let resultText = `<b>Dose consigliata:</b> ${dose}mg THC<br>`;
+      if (cioc < 1) {
+        resultText += `<span>≈ ${Math.round(cioc*2)/2} cioccolatino (${gr}g di cioccolato)</span>`;
       } else {
-        let quarti = dose / 50;
-        let cioc = quarti / 4;
-        let displayCioc = (cioc % 1 === 0) ? `${cioc}` : `${Math.round(cioc * 4) / 4}`;
-        let gr = Math.round(cioc * 10 * 10) / 10;
-        resultText = `Dose consigliata: ${dose}mg THC<br>`;
-        resultText += `≈ ${displayCioc} cioccolatino/i (${gr}g di cioccolato)`;
+        resultText += `<span>${ciocTxt} cioccolatino/i (${gr}g di cioccolato)</span>`;
       }
-      document.getElementById('ded-calc-result').innerHTML = resultText;
-    }
+      document.getElementById('dose-calc-result-classico').innerHTML = resultText;
+    });
   </script>
 </body>
 </html>
