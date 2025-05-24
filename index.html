@@ -13,12 +13,15 @@
   <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
     <div></div><div></div><div></div>
   </div>
+
+  <!-- Splash screen -->
   <div id="splash-screen">
     <div class="splash-logo">
       <img src="img/mascotte.png" alt="Mascotte" />
       <h1>CHOCOBLOOM</h1>
     </div>
   </div>
+  <!-- Age gate -->
   <div id="age-gate" class="age-gate">
     <div class="age-popup">
       <p>Hai più di 21 anni?</p>
@@ -27,78 +30,96 @@
     </div>
   </div>
 
+  <!-- Navbar -->
   <header class="navbar">
     <nav class="navbar-inner">
-      <ul class="menu left">
-        <li><a href="prodotti.html">Prodotti</a></li>
-        <li><a href="#about">Visione</a></li>
-      </ul>
-      <div class="logo-center">
+      <div class="navbar-logo-center">
         <a href="index.html">
           <img src="img/mascotte.png" alt="Mascotte navbar" />
         </a>
       </div>
-      <ul class="menu right">
-        <li><a href="#footer">Contatti</a></li>
-        <li><a href="#footer">Social</a></li>
+      <ul class="navbar-menu">
+        <li><a href="prodotti.html">PRODOTTI</a></li>
+        <li><a href="#about">VISIONE</a></li>
+        <li><a href="#footer">CONTATTI</a></li>
       </ul>
     </nav>
+    <!-- Side menu per mobile -->
     <nav class="side-menu" id="sideMenu">
       <ul>
-        <li><a href="prodotti.html">Prodotti</a></li>
-        <li><a href="#about">Visione</a></li>
-        <li><a href="#footer">Contatti</a></li>
-        <li><a href="#footer">Social</a></li>
+        <li><a href="prodotti.html">PRODOTTI</a></li>
+        <li><a href="#about">VISIONE</a></li>
+        <li><a href="#footer">CONTATTI</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
+  <!-- HERO -->
+  <section class="hero fadein">
+    <div class="hero-content">
       <h1>CHOCOBLOOM</h1>
-      <p>Premium Edibles. 1000mg. Made to elevate.</p>
-      <a href="#products" class="cta glowing">ENTER THE BLOOM</a>
+      <p class="hero-desc">Premium Edibles. 1000mg. Made to elevate.</p>
+      <a href="prodotti.html" class="cta glowing">SCOPRI I PRODOTTI</a>
     </div>
   </section>
 
-  <section id="products" class="products">
+  <!-- PRODOTTI -->
+  <section id="products" class="products-section fadein">
     <h2>I Nostri Edibles</h2>
-    <div class="product-list">
+    <div class="products-grid">
       <div class="product-card">
         <img src="img/prodotto1.png" alt="ChocoBomb 1000mg" />
-        <h3>ChocoBomb 1000mg</h3>
-        <p>5 pezzi da 200mg • Fondente • Distillato D9</p>
+        <div class="product-info">
+          <h3>ChocoBomb 1000mg</h3>
+          <p>5x 200mg · Fondente · Distillato D9</p>
+        </div>
       </div>
       <div class="product-card">
         <img src="img/prodotto2.png" alt="ChocoMicro 500mg" />
-        <h3>ChocoMicro 500mg</h3>
-        <p>5 pezzi da 100mg • Nocciola • Estratto Hybrid</p>
+        <div class="product-info">
+          <h3>ChocoMicro 500mg</h3>
+          <p>5x 100mg · Nocciola · Estratto Hybrid</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="img/prodotto3.png" alt="ChocoWhite 300mg" />
+        <div class="product-info">
+          <h3>ChocoWhite 300mg</h3>
+          <p>3x 100mg · Bianco · Distillato D9</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
+  <!-- ABOUT -->
+  <section id="about" class="about-section fadein">
     <h2>La Visione</h2>
-    <p>ChocoBloom nasce dall’unione tra l’arte pasticcera italiana e il meglio del distillato californiano. Ogni cioccolatino è un viaggio sensoriale, potente e preciso.</p>
+    <p>
+      ChocoBloom nasce dall’unione tra l’arte pasticcera italiana e il meglio del distillato californiano.<br>
+      Ogni cioccolatino è un viaggio sensoriale, potente e preciso.<br>
+      <span class="accent">Edibles, elevati.</span>
+    </p>
   </section>
 
-  <footer id="footer">
-    <p>Telegram: @ChocoBloomEdibles_Order</p>
-    <p>Instagram: @chocobloomedibles</p>
-    <p>© 2025 ChocoBloom. Prodotto in California – Ideato in Italia.</p>
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div>
+      <a href="https://t.me/ChocoBloomEdibles_Order" target="_blank">Telegram</a>
+      <span>·</span>
+      <a href="https://instagram.com/chocobloomedibles" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-copy">
+      © 2025 ChocoBloom. Prodotto in California – Ideato in Italia.
+    </div>
   </footer>
 
-  <script src="scroll.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const splash = document.getElementById('splash-screen');
-      const gate = document.getElementById('age-gate');
-
       setTimeout(() => {
-        splash.classList.add("fade-out");
+        document.getElementById('splash-screen').classList.add("fade-out");
         setTimeout(() => {
-          splash.style.display = 'none';
-          gate.style.display = 'flex';
+          document.getElementById('splash-screen').style.display = 'none';
+          document.getElementById('age-gate').style.display = 'flex';
         }, 1000);
       }, 1500);
     });
