@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="hamburger" onclick="toggleMenu()">
+  <!-- Hamburger solo mobile -->
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
     <div></div><div></div><div></div>
   </div>
-
   <div id="splash-screen">
     <div class="splash-logo">
       <img src="img/mascotte.png" alt="Mascotte" />
@@ -27,29 +27,32 @@
     </div>
   </div>
 
-
-<header class="navbar">
-  <div class="navbar-top">
-    <div class="logo-top">
-      <a href="index.html">
-        <img src="img/mascotte.png" alt="Mascotte" />
-      </a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <nav class="side-menu" id="sideMenu">
-    <ul>
-      <li><a href="prodotti.html">Prodotti</a></li>
-      <li><a href="#about">Visione</a></li>
-      <li><a href="#footer">Contatti</a></li>
-      <li><a href="#footer">Social</a></li>
-    </ul>
-  </nav>
-</header>
+  <header class="navbar">
+    <nav class="navbar-inner">
+      <ul class="menu left">
+        <li><a href="prodotti.html">Prodotti</a></li>
+        <li><a href="#about">Visione</a></li>
+      </ul>
+      <div class="logo-center">
+        <a href="index.html">
+          <img src="img/mascotte.png" alt="Mascotte" />
+        </a>
+      </div>
+      <ul class="menu right">
+        <li><a href="#footer">Contatti</a></li>
+        <li><a href="#footer">Social</a></li>
+      </ul>
+    </nav>
+    <!-- Side menu per mobile -->
+    <nav class="side-menu" id="sideMenu">
+      <ul>
+        <li><a href="prodotti.html">Prodotti</a></li>
+        <li><a href="#about">Visione</a></li>
+        <li><a href="#footer">Contatti</a></li>
+        <li><a href="#footer">Social</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <section class="hero">
     <div class="hero-text">
@@ -86,34 +89,33 @@
     <p>© 2025 ChocoBloom. Prodotto in California – Ideato in Italia.</p>
   </footer>
 
-<script src="scroll.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const splash = document.getElementById('splash-screen');
-    const gate = document.getElementById('age-gate');
-
-    setTimeout(() => {
-      splash.classList.add("fade-out");
+  <script src="scroll.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const splash = document.getElementById('splash-screen');
+      const gate = document.getElementById('age-gate');
 
       setTimeout(() => {
-        splash.style.display = 'none';
-        gate.style.display = 'flex';
-      }, 1000);
-    }, 1500);
-  });
+        splash.classList.add("fade-out");
 
-  function enterSite(confirmed) {
-    if (confirmed) {
-      document.getElementById('age-gate').style.display = 'none';
-    } else {
-      document.body.innerHTML = "<h2 style='color: white; text-align:center; margin-top:20%'>Accesso negato</h2>";
+        setTimeout(() => {
+          splash.style.display = 'none';
+          gate.style.display = 'flex';
+        }, 1000);
+      }, 1500);
+    });
+
+    function enterSite(confirmed) {
+      if (confirmed) {
+        document.getElementById('age-gate').style.display = 'none';
+      } else {
+        document.body.innerHTML = "<h2 style='color: white; text-align:center; margin-top:20%'>Accesso negato</h2>";
+      }
     }
-  }
-</script>
-<script>
-  function toggleMenu() {
-    document.getElementById("sideMenu").classList.toggle("show");
-  }
-</script>
+
+    function toggleMenu() {
+      document.getElementById("sideMenu").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
