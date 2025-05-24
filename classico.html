@@ -240,8 +240,6 @@
         </div>
       </div>
     </section>
-
-    <!-- CALCOLATORE AVANZATO + SLIDER EFFETTI -->
     <section class="dose-section fadein">
       <h2>Calcola la tua dose ideale</h2>
       <form id="dose-calc-form-classico" class="dose-calc-advanced">
@@ -295,8 +293,6 @@
       var menu = document.getElementById("sideMenu");
       menu.classList.toggle("show");
     }
-
-    // Dose calculator con logica corretta
     function calculateDose(weight, sex, tolerance) {
       let dose = weight * 0.2;
       if(sex === 'f') dose *= 0.85;
@@ -310,7 +306,6 @@
       if (dose > 1000) dose = 1000;
       return dose;
     }
-
     function getCioccolatiniString(doseMg) {
       const mgPerPz = 200;
       const gPerPz = 10;
@@ -323,7 +318,6 @@
         return `${ciocTxt} cioccolatino/i (${gr}g di cioccolato)`;
       }
     }
-
     function getEffectPhrase(dose) {
       if (dose < 10) return "Effetti molto leggeri, percepibili solo per principianti.";
       if (dose < 20) return "Effetti leggerissimi, adatti a chi non ha mai consumato THC.";
@@ -332,7 +326,6 @@
       if (dose < 100) return "Dose molto elevata: effetti molto forti, lunga durata, rischio di discomfort. Massima cautela!";
       return "Dose estremamente alta: rischio di effetti indesiderati, paranoia, nausea. Solo per utenti con altissima tolleranza. Evitare se inesperti!";
     }
-
     document.getElementById('dose-calc-form-classico').addEventListener('submit', function(e){
       e.preventDefault();
       const weight = parseFloat(this.weight.value);
@@ -348,7 +341,6 @@
         resultText += `<div style="color:#ff3333;margin-top:7px;font-size:0.98em;font-weight:600;">Dose MOLTO elevata: rischio di effetti indesiderati, solo per utenti molto esperti!</div>`;
       }
       document.getElementById('dose-calc-result-classico').innerHTML = resultText;
-
       // Slider parte dal valore calcolato
       var sliderSection = document.getElementById("slider-effects-section");
       var slider = document.getElementById("slider-dose");
@@ -359,8 +351,6 @@
       effectText.textContent = getEffectPhrase(dose);
       sliderSection.style.display = "block";
     });
-
-    // Slider effetti dinamici
     document.getElementById("slider-dose").addEventListener("input", function() {
       var dose = parseInt(this.value);
       document.getElementById("slider-dose-value").textContent = dose;
