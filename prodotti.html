@@ -21,6 +21,7 @@
       <ul class="navbar-menu">
         <li><a href="prodotti.html">PRODOTTI</a></li>
         <li><a href="index.html#about">VISIONE</a></li>
+        <li><a href="index.html#timeline">STORIA</a></li>
         <li><a href="index.html#footer">CONTATTI</a></li>
       </ul>
     </nav>
@@ -28,6 +29,7 @@
       <ul>
         <li><a href="prodotti.html">PRODOTTI</a></li>
         <li><a href="index.html#about">VISIONE</a></li>
+        <li><a href="index.html#timeline">STORIA</a></li>
         <li><a href="index.html#footer">CONTATTI</a></li>
       </ul>
     </nav>
@@ -60,6 +62,79 @@
         </div>
       </div>
     </section>
+
+    <!-- Moodboard/ingredienti/badge/testimonial/faq anche su prodotti -->
+    <section class="ingredienti-section fadein">
+      <h2>Ingredienti Scelti & Certificazioni</h2>
+      <div class="ingredienti-list">
+        <div class="ingrediente">
+          <img src="img/cacao.png" alt="Cacao premium">
+          <span>Cacao Criollo BIO</span>
+        </div>
+        <div class="ingrediente">
+          <img src="img/distillato.png" alt="Distillato D9">
+          <span>Distillato D9 Californiano</span>
+        </div>
+        <div class="ingrediente">
+          <img src="img/vaniglia.png" alt="Vaniglia naturale">
+          <span>Vaniglia Bourbon Naturale</span>
+        </div>
+        <div class="badge-cert">
+          <img src="img/badge-lab.png" alt="Lab tested">
+          <span>Lab Tested</span>
+        </div>
+        <div class="badge-cert">
+          <img src="img/badge-bio.png" alt="Biologico">
+          <span>Biologico</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="moodboard-section fadein">
+      <h2>Moodboard Sensoriale</h2>
+      <div class="moodboard-grid">
+        <div class="moodboard-item"><img src="img/mood1.jpg" alt="Mood 1"><span>Avvolgente</span></div>
+        <div class="moodboard-item"><img src="img/mood2.jpg" alt="Mood 2"><span>Fiorito</span></div>
+        <div class="moodboard-item"><img src="img/mood3.jpg" alt="Mood 3"><span>Intenso</span></div>
+        <div class="moodboard-item"><img src="img/mood4.jpg" alt="Mood 4"><span>Magico</span></div>
+      </div>
+    </section>
+
+    <section class="testimonial-section fadein">
+      <h2>Cosa dicono di noi</h2>
+      <div class="testimonial-list">
+        <div class="testimonial">
+          <p>“Mai provato nulla di simile! Sapore e viaggio perfetti.”</p>
+          <span>– Luca, Milano</span>
+        </div>
+        <div class="testimonial">
+          <p>“L’effetto è preciso, senza sorprese, e il gusto è top!”</p>
+          <span>– Sara, Roma</span>
+        </div>
+        <div class="testimonial">
+          <p>“Un’esperienza da ripetere. La qualità si sente.”</p>
+          <span>– Dario, Firenze</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section fadein">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Come vengono prodotti?</button>
+          <div class="faq-a">Ogni cioccolatino è artigianale, con ingredienti selezionati e distillato testato in laboratorio.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Quanto dura l’effetto?</button>
+          <div class="faq-a">L’effetto dura tra 4 e 8 ore, dipende dalla tolleranza personale e dalla dose scelta.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Sono legali?</button>
+          <div class="faq-a">Venduti solo dove consentito dalla legge. Verifica sempre la normativa locale.</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -71,7 +146,20 @@
     <div class="footer-copy">
       © 2025 ChocoBloom. Prodotto in California – Ideato in Italia.
     </div>
+    <div class="footer-accessibility">
+      <small>Accessibilità: testo ad alto contrasto, navigazione da tastiera, immagini con alt, audio descritto. Sito ottimizzato per mobile e desktop.</small>
+    </div>
   </footer>
   <script src="scroll.js"></script>
+  <script>
+    // FAQ animate
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.onclick = function() {
+        this.classList.toggle("open");
+        var ans = this.nextElementSibling;
+        ans.style.display = ans.style.display === "block" ? "none" : "block";
+      }
+    });
+  </script>
 </body>
 </html>
