@@ -322,8 +322,21 @@ a:hover {
   margin-left: 8px;
 }
 @media (max-width: 600px) {
-  .moodboard-grid { gap: 14px; }
-  .moodboard-item { width: 80px; }
+  .moodboard-grid {
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+  }
+  .moodboard-item {
+    width: 80vw;
+    min-width: 0;
+    max-width: 300px;
+  }
+  .moodboard-item span {
+    font-size: 1.07em;
+    margin-top: 7px;
+    word-break: break-word;
+  }
 }
 .timeline-section {
   padding: 70px 0 42px 0;
