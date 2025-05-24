@@ -36,7 +36,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .menu.left {
   justify-content: flex-end;
   flex: 1;
@@ -53,19 +52,6 @@ body {
 }
 .menu li a:hover {
   color: #ff00cc;
-}
-
-/* Logo centro Navbar */
-.logo-center {
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 120px;
-  margin: 0 40px;
-}
-.logo-center img {
-  height: 48px;
 }
 
 /* Hamburger menu (mobile only) */
@@ -128,19 +114,13 @@ body {
 
 /* Responsive Navbar - Mobile */
 @media (max-width: 900px) {
-  .navbar-inner .menu,
-  .logo-center {
+  .navbar-inner .menu {
     display: none !important;
   }
   .hamburger {
     display: flex;
   }
-  .side-menu {
-    top: 70px;
-    width: 70vw;
-    min-width: 180px;
-    max-width: 300px;
-  }
+  /* Non mostrare mascotte/logo in navbar mobile */
 }
 
 /* Navbar Desktop */
@@ -161,9 +141,6 @@ body {
   .menu.right {
     justify-content: flex-start;
     flex: 1;
-  }
-  .logo-center {
-    margin: 0 40px;
   }
 }
 
@@ -328,13 +305,25 @@ footer {
   flex-direction: column;
   transition: opacity 1s ease;
 }
+.splash-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .splash-logo img {
   height: 80px;
   margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .splash-logo h1 {
   color: #fff;
   font-size: 2em;
+  width: 100%;
+  text-align: center;
 }
 #splash-screen.fade-out {
   opacity: 0;
