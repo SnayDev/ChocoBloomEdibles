@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChocoBloom</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="splash-screen">
+    <div class="splash-logo">
+      <img src="img/mascotte.png" alt="Mascotte" />
+      <h1>CHOCOBLOOM</h1>
+    </div>
+  </div>
+  <div id="age-gate" class="age-gate">
+    <div class="age-popup">
+      <p>Hai più di 21 anni?</p>
+      <button onclick="enterSite(true)">Sì</button>
+      <button onclick="enterSite(false)">No</button>
+    </div>
+  </div>
+
+
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="prodotti.html">Prodotti</a></li>
+        <li><a href="#about">Visione</a></li>
+        <li class="logo"><a href="index.html"><img src="img/mascotte.png" alt="Mascotte" /></a></li>
+        <li><a href="#contatti">Contatti</a></li>
+        <li><a href="#footer">Social</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>CHOCOBLOOM</h1>
+      <p>Premium Edibles. 1000mg. Made to elevate.</p>
+      <a href="#products" class="cta glowing">ENTER THE BLOOM</a>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <h2>I Nostri Edibles</h2>
+    <div class="product-list">
+      <div class="product-card">
+        <img src="img/prodotto1.png" alt="Choco 1000mg" />
+        <h3>ChocoBomb 1000mg</h3>
+        <p>5 pezzi da 200mg • Fondente • Distillato D9</p>
+      </div>
+      <div class="product-card">
+        <img src="img/prodotto2.png" alt="Choco 500mg" />
+        <h3>ChocoMicro 500mg</h3>
+        <p>5 pezzi da 100mg • Nocciola • Estratto Hybrid</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>La Visione</h2>
+    <p>ChocoBloom nasce dall’unione tra l’arte pasticcera italiana e il meglio del distillato californiano. Ogni cioccolatino è un viaggio sensoriale, potente e preciso.</p>
+  </section>
+
+  <footer id="footer">
+    <p>Telegram: @ChocoBloomEdibles_Order</p>
+    <p>Instagram: @chocobloomedibles</p>
+    <p>© 2025 ChocoBloom. Prodotto in California – Ideato in Italia.</p>
+  </footer>
+
+<script src="scroll.js"></script>
+<script src="scroll.js"></script>
+<script>
+  // Splash screen + age gate
+  window.onload = function () {
+    setTimeout(() => {
+      document.getElementById('splash-screen').style.display = 'none';
+      document.getElementById('age-gate').style.display = 'flex';
+    }, 2000);
+  };
+
+  function enterSite(confirmed) {
+    if (confirmed) {
+      document.getElementById('age-gate').style.display = 'none';
+    } else {
+      document.body.innerHTML = "<h2 style='color: white; text-align:center; margin-top:20%'>Accesso negato</h2>";
+    }
+  }
+</script>
+</body>
+</html>
