@@ -1,7 +1,6 @@
-/* === BASE === */
 body {
   margin: 0;
-  font-family: 'Space+Grotesk', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   color: #fff;
   background: #070707;
   overflow-x: hidden;
@@ -16,7 +15,21 @@ a {
 a:hover {
   color: #ff00cc;
 }
-/* === NAVBAR === */
+.chocobloom-glow {
+  font-size: 4em;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: #fff;
+  text-shadow: 0 0 42px #ff00cc, 0 0 8px #ff00cc99;
+  animation: heroGlow 2.5s infinite ease-in-out;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+@keyframes heroGlow {
+  0% { text-shadow: 0 0 42px #ff00cc, 0 0 8px #ff00cc99;}
+  50% { text-shadow: 0 0 90px #ff3399, 0 0 32px #ff00cc;}
+  100% { text-shadow: 0 0 42px #ff00cc, 0 0 8px #ff00cc99;}
+}
 .navbar {
   width: 100vw;
   position: fixed;
@@ -176,7 +189,6 @@ a:hover {
     height: 48px;
   }
 }
-/* === HERO === */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -193,13 +205,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.hero h1 {
-  font-size: 4em;
-  letter-spacing: 0.08em;
-  margin: 0 0 12px 0;
-  font-weight: 600;
-  text-shadow: 0 0 32px #ff00cc90, 0 0 2px #000;
 }
 .hero-desc {
   font-size: 1.45em;
@@ -229,11 +234,6 @@ a:hover {
   box-shadow: 0 0 44px #ff00cc, 0 0 92px #ff3399;
   animation: heroGlow 2.5s infinite ease-in-out;
 }
-@keyframes heroGlow {
-  0% { box-shadow: 0 0 24px #ff00cc, 0 0 28px #ff3399;}
-  50% { box-shadow: 0 0 60px #ff3399, 0 0 120px #ff00cc;}
-  100% { box-shadow: 0 0 24px #ff00cc, 0 0 28px #ff3399;}
-}
 .cta:hover, .cta:focus {
   background: #cc0099;
   box-shadow: 0 0 64px #ff00cc;
@@ -253,10 +253,9 @@ a:hover {
   100% { opacity: 0.7; transform: scale(1.13);}
 }
 @media (max-width: 700px) {
-  .hero h1 { font-size: 2.2em; }
   .hero-desc { font-size: 1em; }
+  .chocobloom-glow { font-size: 2.2em; }
 }
-/* === SOCIAL PROOF === */
 .social-proof {
   background: #0a0014;
   text-align: center;
@@ -277,7 +276,6 @@ a:hover {
   color: #ff00cc;
   font-weight: 700;
 }
-/* === PRODUCTS === */
 .products-section {
   padding: 92px 0 50px 0;
   background: #070707;
@@ -315,6 +313,14 @@ a:hover {
   transition: box-shadow 0.22s, transform 0.17s;
   position: relative;
   z-index: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover,
+  .product-card:focus {
+    z-index: 10;
+    transform: scale(1.1);
+    box-shadow: 0 0 54px 22px #d800b6, 0 0 24px #ff00cc;
+  }
 }
 .product-card.active {
   z-index: 10;
@@ -372,7 +378,6 @@ a:hover {
   .products-grid { flex-direction: column; align-items: center; }
   .product-card { width: 95vw; max-width: 340px; }
 }
-/* === CALCOLATORE === */
 .dose-section {
   padding: 64px 0 44px 0;
   background: #090013;
@@ -449,7 +454,6 @@ a:hover {
     max-width: 340px;
   }
 }
-/* === MOODBOARD === */
 .moodboard-section {
   padding: 72px 0 48px 0;
   background: #090013;
@@ -515,7 +519,6 @@ a:hover {
     word-break: break-word;
   }
 }
-/* === TIMELINE (STORIA) === */
 .timeline-section {
   padding: 70px 0 42px 0;
   background: #070707;
@@ -559,7 +562,6 @@ a:hover {
   opacity: 0.87;
   font-size: 1.05em;
 }
-/* === INGREDIENTI === */
 .ingredienti-section {
   padding: 60px 0 48px 0;
   background: #0a0014;
@@ -604,7 +606,6 @@ a:hover {
   letter-spacing: 0.07em;
   font-size: 1.01em;
 }
-/* === FAQ === */
 .faq-section {
   padding: 68px 0 30px 0;
   background: #070707;
@@ -651,7 +652,6 @@ a:hover {
   font-size: 1em;
   background: #180028;
 }
-/* === PAGINA DEDICATA PRODOTTO === */
 .product-dedicated {
   background: #070014;
   padding: 65px 0 60px 0;
@@ -714,7 +714,6 @@ a:hover {
   .prod-dedicated-grid { flex-direction: column; gap: 24px; }
   .prod-img img { width: 90vw; max-width: 340px; }
 }
-/* === FOOTER === */
 .footer {
   background: #070707;
   color: #bbb;
@@ -743,20 +742,4 @@ a:hover {
   margin-top: 11px;
   font-size: 0.85em;
   color: #aaa;
-}
-/* Glow sulle card anche su hover da desktop */
-@media (hover: hover) and (pointer: fine) {
-  .product-card:hover,
-  .product-card.active {
-    z-index: 10;
-    transform: scale(1.1);
-    box-shadow: 0 0 54px 22px #d800b6, 0 0 24px #ff00cc;
-  }
-}
-
-/* Mantieni il glow su .active così funziona anche su mobile/tap */
-.product-card.active {
-  z-index: 10;
-  transform: scale(1.1);
-  box-shadow: 0 0 54px 22px #d800b6, 0 0 24px #ff00cc;
 }
