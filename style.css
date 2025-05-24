@@ -467,27 +467,70 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.08em;
 }
-.dose-calc {
+.dose-calc-advanced {
   display: inline-block;
   background: #170022;
   border-radius: 22px;
   box-shadow: 0 0 22px #ff00cc22;
-  padding: 22px 34px;
+  padding: 24px 38px 22px 38px;
+  margin-bottom: 18px;
+  text-align: left;
+  min-width: 250px;
 }
-#dose-range {
-  width: 220px;
-  margin-top: 10px;
+.dose-calc-advanced label {
+  display: block;
+  font-weight: 500;
+  margin-top: 12px;
+  margin-bottom: 4px;
 }
-#dose-value {
-  font-size: 1.12em;
+.dose-calc-advanced input,
+.dose-calc-advanced select {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #ff00cc;
+  background: #fff;
+  color: #1a0033;
+  font-size: 1em;
+  margin-bottom: 7px;
+  box-sizing: border-box;
+}
+.dose-calc-advanced button.cta {
+  width: 100%;
+  margin-top: 14px;
+  padding: 13px 0;
+  font-size: 1.1em;
+}
+.dose-calc-result {
+  margin-top: 19px;
   color: #ff00cc;
+  font-size: 1.18em;
   font-weight: 600;
-  margin-left: 8px;
 }
-.dose-desc {
-  margin-top: 13px;
+.dose-calc-result span {
   color: #fff;
-  font-size: 1.05em;
+  display: block;
+  font-size: 0.97em;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.dose-calc-safety {
+  margin-top: 14px;
+  color: #fff;
+  opacity: 0.78;
+  font-size: 0.94em;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.35;
+}
+@media (max-width: 600px) {
+  .dose-calc-advanced {
+    padding: 18px 7vw;
+    min-width: 0;
+    width: 90vw;
+    max-width: 340px;
+  }
 }
 .faq-section {
   padding: 68px 0 30px 0;
@@ -762,82 +805,4 @@ a:hover {
   .products-section { padding: 84px 0 35px 0;}
   .products-grid { flex-direction: column; align-items: center; }
   .product-card { width: 95vw; max-width: 340px; }
-}
-
-.dose-section {
-  padding: 64px 0 44px 0;
-  background: #090013;
-  text-align: center;
-}
-.dose-section h2 {
-  font-size: 2em;
-  margin-bottom: 18px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-.dose-calc-advanced {
-  display: inline-block;
-  background: #170022;
-  border-radius: 22px;
-  box-shadow: 0 0 22px #ff00cc22;
-  padding: 24px 38px 22px 38px;
-  margin-bottom: 18px;
-  text-align: left;
-  min-width: 250px;
-}
-.dose-calc-advanced label {
-  display: block;
-  font-weight: 500;
-  margin-top: 12px;
-  margin-bottom: 4px;
-}
-.dose-calc-advanced input,
-.dose-calc-advanced select {
-  width: 100%;
-  padding: 7px 10px;
-  border-radius: 8px;
-  border: 1px solid #ff00cc;
-  background: #fff;
-  color: #1a0033;
-  font-size: 1em;
-  margin-bottom: 7px;
-  box-sizing: border-box;
-}
-.dose-calc-advanced button.cta {
-  width: 100%;
-  margin-top: 14px;
-  padding: 13px 0;
-  font-size: 1.1em;
-}
-.dose-calc-result {
-  margin-top: 19px;
-  color: #ff00cc;
-  font-size: 1.18em;
-  font-weight: 600;
-}
-.dose-calc-result span {
-  color: #fff;
-  display: block;
-  font-size: 0.97em;
-  font-weight: 400;
-  margin-top: 4px;
-}
-.dose-calc-safety {
-  margin-top: 14px;
-  color: #fff;
-  opacity: 0.78;
-  font-size: 0.94em;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.35;
-}
-
-@media (max-width: 600px) {
-  .dose-calc-advanced {
-    padding: 18px 7vw;
-    min-width: 0;
-    width: 90vw;
-    max-width: 340px;
-  }
 }
