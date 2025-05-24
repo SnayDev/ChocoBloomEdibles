@@ -62,23 +62,23 @@
       <h2>Ingredienti Scelti & Certificazioni</h2>
       <div class="ingredienti-list">
         <div class="ingrediente">
-          <img src="img/cacao.png" alt="Cacao premium" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+          <img src="img/cacao.png" alt="Cacao premium">
           <span>Cacao Criollo BIO</span>
         </div>
         <div class="ingrediente">
-          <img src="img/distillato.png" alt="Distillato D9" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+          <img src="img/distillato.png" alt="Distillato D9">
           <span>Distillato D9 Californiano</span>
         </div>
         <div class="ingrediente">
-          <img src="img/vaniglia.png" alt="Vaniglia naturale" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+          <img src="img/vaniglia.png" alt="Vaniglia naturale">
           <span>Vaniglia Bourbon Naturale</span>
         </div>
         <div class="badge-cert">
-          <img src="img/badge-lab.png" alt="Lab tested" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+          <img src="img/badge-lab.png" alt="Lab tested">
           <span>Lab Tested</span>
         </div>
         <div class="badge-cert">
-          <img src="img/badge-bio.png" alt="Biologico" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+          <img src="img/badge-bio.png" alt="Biologico">
           <span>Biologico</span>
         </div>
       </div>
@@ -87,10 +87,10 @@
     <section class="moodboard-section fadein">
       <h2>Moodboard Sensoriale</h2>
       <div class="moodboard-grid">
-        <div class="moodboard-item"><img src="img/sensoriale.png" alt="Mood 1" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Avvolgente</span></div>
-        <div class="moodboard-item"><img src="img/mood2.png" alt="Mood 2" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Fiorito</span></div>
-        <div class="moodboard-item"><img src="img/mood3.png" alt="Mood 3" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Intenso</span></div>
-        <div class="moodboard-item"><img src="img/mood4.png" alt="Mood 4" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Magico</span></div>
+        <div class="moodboard-item"><img src="img/sensoriale.png" alt="Avvolgente"><span>Avvolgente</span></div>
+        <div class="moodboard-item"><img src="img/mood2.png" alt="Fiorito"><span>Fiorito</span></div>
+        <div class="moodboard-item"><img src="img/mood3.png" alt="Intenso"><span>Intenso</span></div>
+        <div class="moodboard-item"><img src="img/mood4.png" alt="Magico"><span>Magico</span></div>
       </div>
     </section>
 
@@ -128,11 +128,14 @@
       <small>Accessibilità: testo ad alto contrasto, navigazione da tastiera, immagini con alt, audio descritto. Sito ottimizzato per mobile e desktop.</small>
     </div>
   </footer>
-  <script src="scroll.js"></script>
   <script>
+    function toggleMenu() {
+      var menu = document.getElementById("sideMenu");
+      menu.classList.toggle("show");
+    }
     document.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('click', function(e){
-        if(e.target.classList.contains('discover-btn')) return; // non attivare su bottone
+        if(e.target.classList.contains('discover-btn')) return;
         document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active'));
         this.classList.add('active');
         document.getElementById('products-section').classList.add('fluo-bg');
@@ -140,7 +143,7 @@
       card.addEventListener('blur', function(){
         this.classList.remove('active');
         document.getElementById('products-section').classList.remove('fluo-bg');
-      })
+      });
     });
     document.querySelectorAll('.discover-btn').forEach(btn => {
       btn.onclick = e => { e.stopPropagation(); }
