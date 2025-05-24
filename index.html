@@ -29,16 +29,22 @@
 
 
 <header class="navbar">
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="navbar-top">
+    <div class="logo-top">
+      <a href="index.html">
+        <img src="img/mascotte.png" alt="Mascotte" />
+      </a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
-  <nav>
-    <ul class="nav-links">
+  <nav class="side-menu" id="sideMenu">
+    <ul>
       <li><a href="prodotti.html">Prodotti</a></li>
       <li><a href="#about">Visione</a></li>
-      <li class="logo"><a href="index.html"><img src="img/mascotte.png" alt="Mascotte" /></a></li>
       <li><a href="#footer">Contatti</a></li>
       <li><a href="#footer">Social</a></li>
     </ul>
@@ -106,7 +112,7 @@
 </script>
 <script>
   function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('show');
+    document.getElementById("sideMenu").classList.toggle("show");
   }
 </script>
 </body>
