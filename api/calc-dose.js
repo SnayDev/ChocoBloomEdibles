@@ -1,55 +1,50 @@
+import { Configuration, OpenAIApi } from "openai";
+
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   const { tried, smoke, intensity, age } = req.body;
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'Missing OpenAI API Key' });
+  if (!process.env.OPENAI_API_KEY) {
+    return res.status(500).json({ error: "Missing OpenAI API key" });
   }
 
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+
+  const userMessage = `
+    Un utente ha risposto:
+    - Ha mai provato THC? ${tried}
+    - Fuma cannabis? ${smoke}
+    - Quanto vuole sentire l'effetto? ${intensity}
+    - Età: ${age}
+
+    In base a queste informazioni, consiglia in modo chiaro e conciso una dose ideale in mg di THC, spiegando il perché. Rispondi in modo empatico, amichevole ma responsabile. Usa al massimo 3 frasi.
+  `;
+
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: 'gpt-4',
-        messages: [
-          {
-            role: 'system',
-            content: 'Agisci come un esperto di edibles THC. Restituisci solo un numero (mg) e un messaggio umano, in italiano.'
-          },
-          {
-            role: 'user',
-            content: `Ho provato THC: ${tried}, fumo: ${smoke}, voglio sentirlo: ${intensity}, età: ${age}`
-          }
-        ],
-        temperature: 0.7
-      })
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "Sei un assistente esperto di cannabis responsabile e amichevole." },
+        { role: "user", content: userMessage }
+      ],
+      max_tokens: 200,
+      temperature: 0.8
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("OpenAI error", data);
-      return res.status(500).json({ error: "OpenAI API Error", details: data });
-    }
-
-    const reply = data.choices?.[0]?.message?.content || '';
-    const dose = parseInt(reply.match(/\d+/)?.[0]) || 50;
+    const reply = completion.data.choices[0].message.content;
 
     return res.status(200).json({
-      dose,
+      dose: 0, // opzionale, se vuoi estrarre numeri dal testo puoi farlo più avanti
       note: reply
     });
-
   } catch (err) {
-    console.error("Server error", err);
-    return res.status(500).json({ error: 'Errore interno del server.' });
+    console.error("OpenAI API Error", err);
+    return res.status(500).json({ error: "OpenAI API Error", details: err });
   }
 }
