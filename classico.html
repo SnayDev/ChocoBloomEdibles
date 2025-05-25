@@ -224,13 +224,14 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
-        const { dose, note } = await res.json();
+        const { dose, note = '' } = await res.json();
 
         const pezzi = dose / 200;
         const displayPezzi = (pezzi % 1 === 0) ? `${pezzi}` : `${Math.round(pezzi * 4) / 4}`;
         const grammi = pezzi * 10;
 
-        resultEl.innerHTML = `BloomBot consiglia: <b>${dose}mg THC</b><br>≈ ${displayPezzi} cioccolatino/i (${grammi}g)<br><i>${note}</i>`;
+        const fallbackNote = note || "Consiglio basato sulle tue risposte, inizia gradualmente e ascolta il tuo corpo.";
+        resultEl.innerHTML = `BloomBot consiglia: <b>${dose}mg THC</b><br>≈ ${displayPezzi} cioccolatino/i (${grammi}g)<br><i>${fallbackNote}</i>`;
         document.getElementById('dose-slider').value = dose;
         aggiornaEffettiDose(dose);
       } catch (err) {
