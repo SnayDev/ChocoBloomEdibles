@@ -1,37 +1,58 @@
-export default function handler(req, res) {
+import { Configuration, OpenAIApi } from 'openai';
+
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   const { tried, smoke, intensity, age } = req.body;
 
-  let baseDose = 50;
+  if (!process.env.OPENAI_API_KEY) {
+    return res.status(500).json({ error: 'Missing OpenAI API key' });
+  }
 
-  if (tried === 'daily') baseDose += 60;
-  else if (tried === 'often') baseDose += 35;
-  else if (tried === 'occasionally') baseDose += 15;
-
-  if (smoke === 'daily') baseDose += 40;
-  else if (smoke === 'weekend') baseDose += 15;
-
-  if (intensity === 'strong') baseDose += 60;
-  else if (intensity === 'balanced') baseDose += 25;
-
-  if (age === '18') baseDose -= 10;
-  else if (age === '60') baseDose -= 5;
-
-  // Controlli finali
-  baseDose = Math.min(1000, Math.max(20, baseDose));
-
-  // Risposta più "umana"
-  let msg = `💡 Ti consiglio di iniziare con **${baseDose}mg di THC**.`;
-  if (baseDose <= 50) msg += `\nPerfetto per un primo approccio soft, senza sorprese.`;
-  else if (baseDose <= 150) msg += `\nDovresti avvertire un effetto piacevole e bilanciato.`;
-  else if (baseDose <= 300) msg += `\nPreparati a un viaggio profondo. Goditelo in un contesto rilassato.`;
-  else msg += `\nLivello esperto. Ti consiglio di restare a casa, playlist chill, e niente impegni!`;
-
-  return res.status(200).json({
-    dose: baseDose,
-    message: msg
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY
   });
+  const openai = new OpenAIApi(configuration);
+
+  const prompt = `
+Sei un assistente per chi consuma edibles. L'utente ti ha dato queste info:
+- THC provato: ${tried}
+- Fuma: ${smoke}
+- Intensità desiderata: ${intensity}
+- Età: ${age}
+
+Basandoti su questo, consiglia una dose in mg di THC (massimo 1000mg, minimo 5mg). La risposta deve essere in questo formato JSON:
+{
+  "dose": numero intero,
+  "note": frase di accompagnamento
+}
+Solo il JSON, senza testo extra.
+`;
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [
+        {
+          role: 'system',
+          content: 'Sei un esperto di cannabis edibles, fornisci solo JSON in risposta.'
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
+      ],
+      temperature: 0.7
+    });
+
+    const reply = completion.data.choices[0].message.content.trim();
+    const parsed = JSON.parse(reply);
+
+    res.status(200).json(parsed);
+  } catch (err) {
+    console.error('Errore OpenAI:', err);
+    res.status(500).json({ error: 'Errore nel calcolo con BloomBot.' });
+  }
 }
