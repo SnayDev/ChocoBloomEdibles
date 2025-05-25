@@ -219,7 +219,7 @@
       resultEl.textContent = 'BloomBot sta ragionando...';
 
       try {
-        const res = await fetch('/api/calc-dose.js', {
+        const res = await fetch('https://choco-bloom-edibles.vercel.app/api/calc-dose', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
