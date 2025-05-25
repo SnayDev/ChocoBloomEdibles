@@ -6,6 +6,7 @@
   <title>Prodotti | ChocoBloom</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
 </head>
 <body>
   <!-- Hamburger menu -->
@@ -20,18 +21,18 @@
         </a>
       </div>
       <ul class="navbar-menu">
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="index.html#about">VISIONE</a></li>
-        <li><a href="index.html#timeline">STORIA</a></li>
-        <li><a href="index.html#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="index.html#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="index.html#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="index.html#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
     <nav class="side-menu" id="sideMenu">
       <ul>
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="index.html#about">VISIONE</a></li>
-        <li><a href="index.html#timeline">STORIA</a></li>
-        <li><a href="index.html#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="index.html#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="index.html#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="index.html#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
   </header>
@@ -39,7 +40,7 @@
   <main style="padding-top: 100px;">
     <section class="hero-classico">
       <div class="hero-bg-overlay"></div>
-      <div class="hero-content">
+      <div class="hero-content" style="text-align: center;">
         <h1 class="hero-title">Scopri il Syrup</h1>
         <p class="hero-subtitle">1000mg di eleganza infusa – Ogni goccia, un viaggio</p>
         <p class="hero-promo">⚗️ Infuso con distillato D9 californiano lab tested. Non è uno sciroppo qualunque.</p>
@@ -48,19 +49,18 @@
     </section>
     <section class="prodotto-main">
       <div class="prodotto-img">
-        <img src="img/syrup.png" alt="ChocoBloom Syrup" />
+        <img src="img/sciroppo.png" alt="ChocoBloom Syrup" class="syrup-image" />
       </div>
-      <div class="prodotto-info">
-        <h1>ChocoBloom Syrup 1000mg</h1>
-        <div class="badge-esclusivo">Edizione Limitata</div>
+      <div class="prodotto-info" style="padding-left: 30px;">
+        <h1 class="prodotto-titolo">ChocoBloom Syrup 1000mg <span class="badge-esclusivo">Edizione Limitata</span></h1>
         <p class="prodotto-breve">L’infuso perfetto per mixare, microdosare o lasciarsi andare. 1000mg di THC, made in California</p>
         <div class="prodotto-caratteristiche">
           <h2>Caratteristiche</h2>
           <ul>
-            <li>Peso netto: 150mL</li>
-            <li>THC: 6,6mg per mL</li>
-            <li>Pezzi per confezione: 1</li>
-            <li>Tipologia: Sciroppo</li>
+            <li>🫗 Peso netto: 150mL</li>
+            <li>🫗 THC: 6,6mg per mL</li>
+            <li>🫗 Pezzi per confezione: 1</li>
+            <li>🫗 Tipologia: Sciroppo</li>
           </ul>
         </div>
         <div class="prodotto-nutrizionali">
@@ -157,7 +157,9 @@
                 <option value="60">60+</option>
               </select>
 
-              <button type="null" class="cta">COMING SOON</button>
+            <button type="button" class="cta" id="coming-soon-btn">COMING SOON</button>
+            <div id="cannabis-leaf-animation"></div>
+            <div id="ai-agent-result" class="dose-calc-result fadein"></div>
             </form>
             <div id="ai-agent-result" class="dose-calc-result fadein"></div>
           </div>
@@ -202,45 +204,46 @@
     document.addEventListener('click', function(e) {
       const menu = document.getElementById('sideMenu');
       const burger = document.querySelector('.hamburger');
-      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+      if (!burger.contains(e.target) && !menu.contains(e.target)) {
         menu.classList.remove('show');
         burger.classList.remove('open');
       }
     });
-  </script>
-  <script>
-    document.getElementById('ai-agent-form').addEventListener('submit', async function(e){
+
+    document.getElementById('ai-agent-form').addEventListener('submit', function(e){
       e.preventDefault();
-      const data = {
-        tried: this['ai-tried'].value,
-        smoke: this['ai-smoke'].value,
-        intensity: this['ai-intensity'].value,
-        age: this['ai-age'].value
-      };
-
       const resultEl = document.getElementById('ai-agent-result');
-      resultEl.textContent = 'BloomBot sta ragionando...';
-
-      try {
-        const res = await fetch('https://choco-bloom-edibles-git-img-chocoblooms-projects.vercel.app/api/calc-dose', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const { dose, note = '' } = await res.json();
-
-        const pezzi = dose / 200;
-        const displayPezzi = (pezzi % 1 === 0) ? `${pezzi}` : `${Math.round(pezzi * 4) / 4}`;
-        const grammi = pezzi * 10;
-
-        const fallbackNote = note || "Consiglio basato sulle tue risposte, inizia gradualmente e ascolta il tuo corpo.";
-        resultEl.innerHTML = `BloomBot consiglia: <b>${dose}mg THC</b><br>≈ ${displayPezzi} cioccolatino/i (${grammi}g)<br><i>${fallbackNote}</i>`;
-        document.getElementById('dose-slider').value = dose;
-        aggiornaEffettiDose(dose);
-      } catch (err) {
-        resultEl.textContent = 'Errore durante il calcolo. Riprova.';
-      }
+      resultEl.innerHTML = "Funzione BloomBot non ancora disponibile.";
     });
   </script>
+  <!-- Handler di submit rimosso per #ai-agent-form: la funzione BloomBot è disabilitata. -->
 </body>
 </html>
+
+  <script>
+    // Gestione COMING SOON per BloomBot
+    document.querySelectorAll("#coming-soon-btn").forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        const baseRect = this.getBoundingClientRect();
+        const centerX = baseRect.left + baseRect.width / 2 + window.scrollX;
+        const centerY = baseRect.top + baseRect.height / 2 + window.scrollY;
+
+        for (let i = 0; i < 18; i++) {
+          const leaf = document.createElement("div");
+          leaf.className = "leaf";
+          const angle = (i / 18) * 2 * Math.PI;
+          const radius = 60 + Math.random() * 40;
+          const x = centerX + Math.cos(angle) * radius;
+          const y = centerY + Math.sin(angle) * radius;
+          leaf.style.left = x + "px";
+          leaf.style.top = y + "px";
+          leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+          document.body.appendChild(leaf);
+          setTimeout(() => leaf.remove(), 2500);
+        }
+
+        const msg = this.parentElement.querySelector("#ai-agent-result");
+        if (msg) msg.innerHTML = "Funzione BloomBot non ancora disponibile.";
+      });
+    });
+  </script>

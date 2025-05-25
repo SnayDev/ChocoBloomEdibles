@@ -6,6 +6,7 @@
   <title>Prodotti | ChocoBloom</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
 </head>
 <body>
   <!-- Hamburger menu -->
@@ -20,18 +21,18 @@
         </a>
       </div>
       <ul class="navbar-menu">
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="index.html#about">VISIONE</a></li>
-        <li><a href="index.html#timeline">STORIA</a></li>
-        <li><a href="index.html#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="index.html#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="index.html#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="index.html#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
     <nav class="side-menu" id="sideMenu">
       <ul>
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="index.html#about">VISIONE</a></li>
-        <li><a href="index.html#timeline">STORIA</a></li>
-        <li><a href="index.html#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="index.html#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="index.html#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="index.html#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
   </header>
@@ -39,7 +40,7 @@
   <main style="padding-top: 100px;">
     <section class="hero-classico">
       <div class="hero-bg-overlay"></div>
-      <div class="hero-content">
+      <div class="hero-content" style="text-align: center;">
         <h1 class="hero-title">Scopri il Classico</h1>
         <p class="hero-subtitle">1000mg di eleganza infusa – 200mg per ogni gioiello di cioccolato</p>
         <p class="hero-promo">🔥 Limited Drop: solo 100 confezioni disponibili questo mese! 🔥</p>
@@ -50,9 +51,8 @@
       <div class="prodotto-img">
         <img src="img/classico.jpg" alt="ChocoBloom Classico" />
       </div>
-      <div class="prodotto-info">
-        <h1>ChocoBloom Classico 1000mg</h1>
-        <div class="badge-esclusivo">Edizione Limitata</div>
+      <div class="prodotto-info" style="text-align: left; padding-left: 30px;">
+        <h1 class="prodotto-titolo">ChocoBloom Classico 1000mg <span class="badge-esclusivo">Edizione Limitata</span></h1>
         <p class="prodotto-breve">Il cioccolatino artigianale premium con 200mg THC per pezzo, con distillato californiano lab tested.</p>
         <div class="prodotto-caratteristiche">
           <h2>Caratteristiche</h2>
@@ -104,7 +104,7 @@
               <option value="med">Regolare</option>
               <option value="high">Alta tolleranza</option>
             </select>
-            <button type="submit" class="cta">Calcola dose</button>
+            <button type="submit" class="cta">COMING SOON</button>
           </form>
           <div class="slider-effetti">
             <label for="dose-slider">Simula una dose:</label>
@@ -154,7 +154,7 @@
                 <option value="60">60+</option>
               </select>
 
-              <button type="null" class="cta">COMING SOON</button>
+              <button type="submit" class="cta">COMING SOON</button>
             </form>
             <div id="ai-agent-result" class="dose-calc-result fadein"></div>
           </div>
@@ -206,37 +206,10 @@
     });
   </script>
   <script>
-    document.getElementById('ai-agent-form').addEventListener('submit', async function(e){
+    document.getElementById('ai-agent-form').addEventListener('submit', function(e){
       e.preventDefault();
-      const data = {
-        tried: this['ai-tried'].value,
-        smoke: this['ai-smoke'].value,
-        intensity: this['ai-intensity'].value,
-        age: this['ai-age'].value
-      };
-
       const resultEl = document.getElementById('ai-agent-result');
-      resultEl.textContent = 'BloomBot sta ragionando...';
-
-      try {
-        const res = await fetch('choco-bloom-edibles-git-api-chocoblooms-projects.vercel.app/api/calc-dose', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const { dose, note = '' } = await res.json();
-
-        const pezzi = dose / 200;
-        const displayPezzi = (pezzi % 1 === 0) ? `${pezzi}` : `${Math.round(pezzi * 4) / 4}`;
-        const grammi = pezzi * 10;
-
-        const fallbackNote = note || "Consiglio basato sulle tue risposte, inizia gradualmente e ascolta il tuo corpo.";
-        resultEl.innerHTML = `BloomBot consiglia: <b>${dose}mg THC</b><br>≈ ${displayPezzi} cioccolatino/i (${grammi}g)<br><i>${fallbackNote}</i>`;
-        document.getElementById('dose-slider').value = dose;
-        aggiornaEffettiDose(dose);
-      } catch (err) {
-        resultEl.textContent = 'Errore durante il calcolo. Riprova.';
-      }
+      resultEl.innerHTML = "Funzione BloomBot non ancora disponibile.";
     });
   </script>
 </body>

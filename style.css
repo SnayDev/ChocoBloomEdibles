@@ -946,6 +946,10 @@ a:hover {
   box-shadow: 0 0 22px #ff00cc18;
   padding: 30px 34px 30px 34px;
   color: #fff;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 .prodotto-caratteristiche ul,
 .prodotto-ingredienti p {
@@ -1083,7 +1087,10 @@ a:hover {
   .prodotto-info {
     max-width: 98vw;
     min-width: unset;
-    padding: 16px 2vw 17px 2vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    box-sizing: border-box;
+    text-align: center;
   }
   .prodotto-img img {
     width: 85vw;
@@ -1239,14 +1246,15 @@ a:hover {
 
 .prodotto-caratteristiche li {
   position: relative;
-  padding-left: 18px;
+  padding-left: 0;
   margin-bottom: 10px;
 }
 .prodotto-caratteristiche li::before {
-  content: "🍫";
+  content: "";
   position: absolute;
   left: 0;
 }
+
 
 .dose-ai-agent select {
   background: linear-gradient(135deg, #ff00cc11, #cc33ff11);
@@ -1266,4 +1274,61 @@ a:hover {
   max-height: 200px;
   opacity: 1;
   padding: 10px 26px 18px 26px;
+}
+# Syrup image animation
+.syrup-image {
+  animation: syrupDrip 2.5s infinite alternate;
+  transform-origin: top center;
+}
+
+@keyframes syrupDrip {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg) translateY(2px); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+# Animazione foglie cannabis
+.leaf {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-image: url('img/leaf.svg');
+  background-size: cover;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: explodeLeaf 2.4s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes explodeLeaf {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+# Animazione foglie cannabis
+.leaf {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-image: url('img/leaf.svg');
+  background-size: cover;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: explodeLeaf 2.4s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes explodeLeaf {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
 }

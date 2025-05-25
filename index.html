@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.materialdesignicons.com/7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="hamburger" onclick="toggleMenu()" aria-label="Menu" tabindex="0">
@@ -35,18 +36,18 @@
         </a>
       </div>
       <ul class="navbar-menu">
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="#about">VISIONE</a></li>
-        <li><a href="#timeline">STORIA</a></li>
-        <li><a href="#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
     <nav class="side-menu" id="sideMenu">
       <ul>
-        <li><a href="prodotti.html">PRODOTTI</a></li>
-        <li><a href="#about">VISIONE</a></li>
-        <li><a href="#timeline">STORIA</a></li>
-        <li><a href="#footer">CONTATTI</a></li>
+        <li><a href="prodotti.html"><i class="mdi mdi-cube-outline"></i> PRODOTTI</a></li>
+        <li><a href="#about"><i class="mdi mdi-eye-outline"></i> VISIONE</a></li>
+        <li><a href="#timeline"><i class="mdi mdi-history"></i> STORIA</a></li>
+        <li><a href="#footer"><i class="mdi mdi-email-outline"></i> CONTATTI</a></li>
       </ul>
     </nav>
   </header>
@@ -60,12 +61,6 @@
     </div>
   </section>
 
-  <section class="social-proof fadein">
-    <div class="badge-live">
-      <span id="orders-today">12</span> nuovi ordini oggi · 
-      <span id="drop-timer">Nuovo drop tra 03:12:45</span>
-    </div>
-  </section>
 
   <section class="moodboard-section fadein">
     <h2>Moodboard Sensoriale</h2>
@@ -74,13 +69,6 @@
       <div class="moodboard-item"><img src="img/mood2.png" alt="Mood 2" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Fiorito</span></div>
       <div class="moodboard-item"><img src="img/mood3.png" alt="Mood 3" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Intenso</span></div>
       <div class="moodboard-item"><img src="img/mood4.png" alt="Mood 4" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';"><span>Magico</span></div>
-    </div>
-    <div class="moodboard-audio">
-      <audio controls>
-        <source src="audio/chocobloom-ambiente.mp3" type="audio/mp3" />
-        Il tuo browser non supporta l’audio.
-      </audio>
-      <span>Ascolta la nostra colonna sonora sensoriale!</span>
     </div>
   </section>
 
@@ -164,7 +152,7 @@
         Scegli la dose, ascolta la nostra playlist, gusta lentamente.<br>
         Lasciati portare lontano: <span class="accent">edibles, elevati.</span>
       </p>
-      <a href="#moodboard" class="cta">Inizia il rituale</a>
+      <a href="prodotti.html" class="cta">Inizia il rituale</a>
     </div>
   </section>
 
@@ -193,6 +181,13 @@
 
   <script src="scroll.js"></script>
   <script>
+    // Hamburger menu toggle logic
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      const burger = document.querySelector('.hamburger');
+      menu.classList.toggle('show');
+      burger.classList.toggle('open');
+    }
     document.getElementById("chocobloom-quiz").onsubmit = function(e) {
       e.preventDefault();
       var effect = this.effect.value;
@@ -291,6 +286,19 @@
       this.style.transform = "";
       this.style.filter = "";
     }
+    // Optional: close menu when clicking outside
+    document.addEventListener("click", function (event) {
+      const sideMenu = document.getElementById("sideMenu");
+      const hamburger = document.querySelector(".hamburger");
+      const isClickInsideMenu = sideMenu.contains(event.target);
+      const isClickOnHamburger = hamburger.contains(event.target);
+      const isClickInsideNavbar = event.target.closest(".navbar");
+
+      if (!isClickInsideMenu && !isClickOnHamburger && !isClickInsideNavbar) {
+        sideMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+      }
+    });
 </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
