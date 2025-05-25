@@ -1,8 +1,12 @@
 document.getElementById("ai-agent-form").addEventListener("submit", async function(e) {
   e.preventDefault();
   const form = e.target;
-  document.getElementById("ai-agent-result").textContent = '';
-  document.getElementById("ai-thinking").style.display = 'block';
+
+  // Reset UI
+  const thinking = document.getElementById("ai-thinking");
+  const result = document.getElementById("ai-agent-result");
+  result.textContent = '';
+  thinking.style.display = 'block';
 
   const body = {
     tried: form['ai-tried'].value,
@@ -19,10 +23,13 @@ document.getElementById("ai-agent-form").addEventListener("submit", async functi
     });
 
     const data = await res.json();
-    document.getElementById("ai-agent-result").textContent = data.message;
+
+    // Optional: anima la risposta
+    await new Promise(resolve => setTimeout(resolve, 800));
+    result.textContent = data.message;
   } catch (err) {
-    document.getElementById("ai-agent-result").textContent = 'Errore nel calcolo della dose.';
+    result.textContent = 'Errore durante la richiesta. Riprova.';
   }
 
-  document.getElementById("ai-thinking").style.display = 'none';
+  thinking.style.display = 'none';
 });
