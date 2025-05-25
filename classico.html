@@ -36,9 +36,8 @@
     </nav>
   </header>
 
-  <main style="padding-top: 100px;">
-    <section class="hero-classico">
-      <div class="hero-bg-overlay"></div>
+  <main>
+    <section class="hero hero-classico fadein">
       <div class="hero-content">
         <h1 class="hero-title">Scopri il Classico</h1>
         <p class="hero-subtitle">1000mg di eleganza infusa – 200mg per ogni gioiello di cioccolato</p>
@@ -46,7 +45,7 @@
         <a href="#dose-calc-form-classico" class="cta hero-cta">Calcola la tua dose</a>
       </div>
     </section>
-    <section class="prodotto-main">
+    <section class="prodotto-main fadein">
       <div class="prodotto-img">
         <img src="img/classico.jpg" alt="ChocoBloom Classico" />
       </div>
@@ -86,7 +85,46 @@
             <strong>Allergeni:</strong> Soia, lecitina (non OGM).
           </p>
         </div>
-        <section class="dose-section">
+        <!-- BLOOMBOT AI AGENT - SPOSTATO SOPRA -->
+        <div class="dose-ai-agent fadein" style="margin-top: 30px;">
+          <h3>💬 BloomBot AI: la tua guida personalizzata</h3>
+          <form id="ai-agent-form">
+            <label title="Hai già assunto THC in passato?">Hai mai provato THC?</label>
+            <select name="ai-tried">
+              <option value="no">Mai</option>
+              <option value="occasionally">Ogni tanto</option>
+              <option value="often">Regolarmente</option>
+              <option value="daily">Ogni giorno</option>
+            </select>
+            <label title="Hai l’abitudine di fumare cannabis?">Fumi cannabis?</label>
+            <select name="ai-smoke">
+              <option value="no">Mai</option>
+              <option value="weekend">Ogni tanto</option>
+              <option value="daily">Tutti i giorni</option>
+            </select>
+            <label title="Quanto vuoi sentire l’effetto?">Quanto vuoi sentirlo?</label>
+            <select name="ai-intensity">
+              <option value="light">Appena un po’</option>
+              <option value="balanced">Un effetto pieno</option>
+              <option value="strong">Voglio volare</option>
+            </select>
+            <label title="Quanti anni hai?">Età</label>
+            <select name="ai-age">
+              <option value="18">18-20</option>
+              <option value="21">21-29</option>
+              <option value="30">30-39</option>
+              <option value="40">40-59</option>
+              <option value="60">60+</option>
+            </select>
+            <button type="submit" class="cta">Chiedi a BloomBot</button>
+          </form>
+          <div id="ai-thinking" style="display:none;text-align:center;margin-top:12px;color:#ff99cc;font-size:1.1em;">
+            BloomBot sta pensando... <span style="animation: dots 1.2s steps(3, end) infinite;">...</span>
+          </div>
+          <div id="ai-agent-result" class="dose-calc-result fadein"></div>
+        </div>
+        <!-- CALCOLATORE CLASSICO -->
+        <section class="dose-section fadein" style="margin-top: 32px;">
           <h2>Calcola la tua dose ideale</h2>
           <form id="dose-calc-form-classico" class="dose-calc-advanced">
             <label for="dose-weight">Peso (kg):</label>
@@ -106,57 +144,18 @@
             </select>
             <button type="submit" class="cta">Calcola dose</button>
           </form>
-          <div class="slider-effetti">
-            <label for="dose-slider">Simula una dose:</label>
-            <input type="range" id="dose-slider" min="50" max="1000" step="50" value="50" oninput="aggiornaEffettiDose(this.value)">
-            <span id="slider-dose-label">50mg</span>
-            <div id="slider-effetti-descrizione">Effetto lieve, adatto a principianti.</div>
+          <div class="slider-effetti" style="margin-top:28px;">
+            <label for="dose-slider" style="font-size:1.08em;">Simula una dose:</label>
+            <input type="range" id="dose-slider" min="50" max="1000" step="50" value="50" oninput="aggiornaEffettiDose(this.value)" style="margin-top:12px;">
+            <span id="slider-dose-label" style="font-size:1.13em; margin-left:12px;">50mg</span>
+            <div id="slider-effetti-descrizione" style="margin-top:6px; font-size:1.07em; color:#ffe6f3;">Effetto lieve, adatto a principianti.</div>
           </div>
-          <div id="dose-calc-result-classico" class="dose-calc-result fadein"></div>
-          <div class="dose-calc-safety">
+          <div id="dose-calc-result-classico" class="dose-calc-result fadein" style="text-align:center;"></div>
+          <div class="dose-calc-safety" style="margin-top:14px;">
             <small>
               Attenzione: i risultati sono solo indicativi. Inizia sempre con la dose minima possibile. Gli effetti possono durare anche 8 ore.<br>
               <b>Mai guidare o svolgere attività a rischio dopo l’assunzione.</b>
             </small>
-          </div>
-          <div class="dose-divider"><span>oppure</span></div>
-          <div class="dose-ai-agent">
-            <h3>Preferisci? Chiedi a BloomBot 🤖</h3>
-            <form id="ai-agent-form">
-              <label title="Hai già assunto THC in passato?">Hai mai provato THC?</label>
-              <select name="ai-tried">
-                <option value="no">Mai</option>
-                <option value="occasionally">Ogni tanto</option>
-                <option value="often">Regolarmente</option>
-                <option value="daily">Ogni giorno</option>
-              </select>
-
-              <label title="Hai l’abitudine di fumare cannabis?">Fumi cannabis?</label>
-              <select name="ai-smoke">
-                <option value="no">Mai</option>
-                <option value="weekend">Ogni tanto</option>
-                <option value="daily">Tutti i giorni</option>
-              </select>
-
-              <label title="Quanto vuoi sentire l’effetto?">Quanto vuoi sentirlo?</label>
-              <select name="ai-intensity">
-                <option value="light">Appena un po’</option>
-                <option value="balanced">Un effetto pieno</option>
-                <option value="strong">Voglio volare</option>
-              </select>
-
-              <label title="Quanti anni hai?">Età</label>
-              <select name="ai-age">
-                <option value="18">18-20</option>
-                <option value="21">21-29</option>
-                <option value="30">30-39</option>
-                <option value="40">40-59</option>
-                <option value="60">60+</option>
-              </select>
-
-              <button type="submit" class="cta">Chiedi a BloomBot</button>
-            </form>
-            <div id="ai-agent-result" class="dose-calc-result fadein"></div>
           </div>
         </section>
       </div>
@@ -173,109 +172,20 @@
     </div>
   </footer>
   <script>
-    document.getElementById('ai-agent-form').addEventListener('submit', function(e){
-      e.preventDefault();
-      const tried = this['ai-tried'].value;
-      const smoke = this['ai-smoke'].value;
-      const intensity = this['ai-intensity'].value;
-      const age = this['ai-age'].value;
-
-      // AI-style heuristic reasoning using weightings
-      let score = 0;
-
-      // Abitudine THC
-      if (tried === 'no') score += 0;
-      else if (tried === 'occasionally') score += 1;
-      else if (tried === 'often') score += 2;
-      else if (tried === 'daily') score += 3;
-
-      // Fumatore
-      if (smoke === 'daily') score += 3;
-      else if (smoke === 'weekend') score += 1;
-
-      // Intensità desiderata
-      if (intensity === 'light') score += 0;
-      else if (intensity === 'balanced') score += 2;
-      else if (intensity === 'strong') score += 4;
-
-      // Età
-      if (age === '18') score += 1;
-      else if (age === '21') score += 2;
-      else if (age === '30') score += 3;
-      else if (age === '40') score += 2;
-      else if (age === '60') score += 1;
-
-      // Heuristic AI rule mapping
-      let dose = 50;
-      if (score <= 3) dose = 50;
-      else if (score <= 5) dose = 100;
-      else if (score <= 8) dose = 150;
-      else if (score <= 11) dose = 200;
-      else if (score <= 14) dose = 300;
-      else if (score <= 16) dose = 400;
-      else dose = 500;
-
-      // Round to nearest 50
-      dose = Math.round(dose / 50) * 50;
-      dose = Math.min(1000, dose); // hard cap
-
-      const pezzi = dose / 200;
-      const displayPezzi = (pezzi % 1 === 0) ? `${pezzi}` : `${Math.round(pezzi * 4) / 4}`;
-      const grammi = pezzi * 10;
-
-      const resultEl = document.getElementById('ai-agent-result');
-      resultEl.classList.remove('fadein');
-      void resultEl.offsetWidth;
-      resultEl.classList.add('fadein');
-
-      resultEl.innerHTML = `BloomBot consiglia: <b>${dose}mg THC</b><br>≈ ${displayPezzi} cioccolatino/i (${grammi}g)`;
-      document.getElementById('dose-slider').value = dose;
-      aggiornaEffettiDose(dose);
-    });
-    // Dose calculator
-    document.getElementById('dose-calc-form-classico').addEventListener('submit', function(e){
-      e.preventDefault();
-      const weight = parseFloat(this.weight.value);
-      const sex = this.sex.value;
-      const tolerance = this.tolerance.value;
-
-      if (isNaN(weight)) return;
-
-      // Calcolo base realistico
-      let baseDose = weight * 0.9; // 0.9mg per kg
-
-      // Modificatori per sesso
-      if (sex === 'f') baseDose *= 0.85;
-      else if (sex === 'x') baseDose *= 0.93;
-
-      // Modificatori per tolleranza
-      const toleranceMap = {
-        none: 0.4,
-        low: 0.7,
-        med: 1,
-        high: 1.5
-      };
-      baseDose *= toleranceMap[tolerance];
-
-      // Arrotonda al multiplo di 50 e limita tra 50 e 1000
-      let dose = Math.round(baseDose / 50) * 50;
-      dose = Math.max(50, Math.min(dose, 1000));
-
-      const pezzi = dose / 200;
-      const displayPezzi = (pezzi % 1 === 0) ? `${pezzi}` : `${Math.round(pezzi * 4) / 4}`;
-      const grammi = pezzi * 10;
-
-      const resultEl = document.getElementById('dose-calc-result-classico');
-      resultEl.classList.remove('fadein');
-      void resultEl.offsetWidth;
-      resultEl.classList.add('fadein');
-
-      let resultText = `Dose consigliata: ${dose}mg THC<br>`;
-      resultText += `≈ ${displayPezzi} cioccolatino/i (${grammi}g di cioccolato)`;
-
-      document.getElementById('dose-calc-result-classico').innerHTML = resultText;
-      document.getElementById('dose-slider').value = dose;
-      aggiornaEffettiDose(dose);
+    // Hamburger menu con animazione "X" e gestione SOLO tramite classi
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      const burger = document.querySelector('.hamburger');
+      menu.classList.toggle('show');
+      burger.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('sideMenu');
+      const burger = document.querySelector('.hamburger');
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.classList.remove('show');
+        burger.classList.remove('open');
+      }
     });
 
     // Slider effetti
@@ -292,23 +202,37 @@
       else desc = "Dose massiva: solo per tolleranza altissima. Rischio effetti collaterali!";
       document.getElementById('slider-effetti-descrizione').textContent = desc;
     }
+  </script>
+  <script>
+    document.getElementById('ai-agent-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const tried = this['ai-tried'].value;
+      const smoke = this['ai-smoke'].value;
+      const intensity = this['ai-intensity'].value;
+      const age = this['ai-age'].value;
 
-    // Hamburger menu con animazione "X" e gestione SOLO tramite classi
-    function toggleMenu() {
-      const menu = document.getElementById('sideMenu');
-      const burger = document.querySelector('.hamburger');
-      menu.classList.toggle('show');
-      burger.classList.toggle('open');
-    }
-    // Chiudi il menu se clicchi fuori (opzionale)
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('sideMenu');
-      const burger = document.querySelector('.hamburger');
-      if (!menu.contains(e.target) && !burger.contains(e.target)) {
-        menu.classList.remove('show');
-        burger.classList.remove('open');
+      const thinking = document.getElementById("ai-thinking");
+      const resultEl = document.getElementById("ai-agent-result");
+      resultEl.textContent = "";
+      thinking.style.display = "block";
+
+      try {
+        const res = await fetch('/api/calc-dose', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tried, smoke, intensity, age })
+        });
+
+        const data = await res.json();
+        await new Promise(resolve => setTimeout(resolve, 700));
+        resultEl.innerHTML = data.message;
+      } catch (err) {
+        resultEl.textContent = "Errore durante la richiesta. Riprova.";
       }
+
+      thinking.style.display = "none";
     });
   </script>
+  <script src="bloombot.js"></script>
 </body>
 </html>
