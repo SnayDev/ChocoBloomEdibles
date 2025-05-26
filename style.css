@@ -1,3 +1,98 @@
+/* Dose warning icon animation */
+.dose-warning-icon {
+  font-size: 1.6em;
+  animation: pulseGlow 1.5s infinite alternate;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  background: transparent !important;
+  line-height: 1;
+  width: 1.2em;
+  height: 1.2em;
+  text-align: center;
+}
+
+/* Fix: rimuovi lo spazio vuoto tra dose result e disclaimer */
+.dose-calc-result {
+  margin-bottom: 0 !important;
+}
+
+.dose-result-box {
+  margin-bottom: 0 !important;
+}
+
+.dose-result-box + .dose-disclaimer,
+.dose-calc-result + .dose-disclaimer {
+  margin-top: 0 !important;
+}
+
+.dose-disclaimer {
+  margin-top: 0 !important;
+}
+
+/* Assicuriamoci che l'emoji sia trasparente */
+.dose-warning-icon::before {
+  background: transparent !important;
+}
+
+/* Fix definitivo per spazi tra elementi della dose */
+#dose-calc-result-classico {
+  margin-bottom: 0 !important;
+}
+
+#dose-calc-result-classico + .dose-disclaimer {
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+}
+
+/* Stile per il bottone super avanzata */
+#super-adv-toggle {
+  background: linear-gradient(45deg, #cc00ff, #6600ff);
+  border: 1px solid #9900ff;
+}
+
+/* Soluzione definitiva per emoji trasparente */
+.dose-warning-icon {
+  isolation: isolate;
+  mix-blend-mode: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Stile per divider "oppure" */
+.dose-divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.dose-divider span {
+  background: #170022;
+  padding: 0 15px;
+  color: #ff00cc;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.dose-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ff00cc44;
+  z-index: 0;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 3px #ff3399); }
+  100% { transform: scale(1.2); filter: drop-shadow(0 0 8px #ff00cc); }
+}
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;

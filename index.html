@@ -185,8 +185,28 @@
     function toggleMenu() {
       const menu = document.getElementById('sideMenu');
       const burger = document.querySelector('.hamburger');
-      menu.classList.toggle('show');
-      burger.classList.toggle('open');
+      const isOpen = menu.classList.contains('show');
+      if (!isOpen) {
+        menu.classList.add('show');
+        burger.classList.add('open');
+        document.body.addEventListener('click', closeMenuOnOutsideClick);
+      } else {
+        menu.classList.remove('show');
+        burger.classList.remove('open');
+        document.body.removeEventListener('click', closeMenuOnOutsideClick);
+      }
+    }
+
+    function closeMenuOnOutsideClick(event) {
+      const menu = document.getElementById('sideMenu');
+      const burger = document.querySelector('.hamburger');
+      const isClickInsideMenu = menu.contains(event.target);
+      const isClickOnBurger = burger.contains(event.target);
+      if (!isClickInsideMenu && !isClickOnBurger) {
+        menu.classList.remove('show');
+        burger.classList.remove('open');
+        document.body.removeEventListener('click', closeMenuOnOutsideClick);
+      }
     }
     document.getElementById("chocobloom-quiz").onsubmit = function(e) {
       e.preventDefault();
@@ -201,31 +221,6 @@
       document.getElementById("quiz-result").innerHTML = "<b>Consigliato:</b> " + result + "!";
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('dose-calc-form').addEventListener('submit', function(e){
-        e.preventDefault();
-        const weight = parseFloat(this.weight.value);
-        const sex = this.sex.value;
-        const tolerance = this.tolerance.value;
-        let dose = weight * 0.2;
-        if(sex === 'f') dose *= 0.85;
-        if(sex === 'x') dose *= 0.93;
-        if(tolerance === 'none') dose *= 0.5;
-        else if(tolerance === 'low') dose *= 0.75;
-        else if(tolerance === 'med') dose *= 1;
-        else if(tolerance === 'high') dose *= 2;
-        dose = Math.round(dose);
-        if(dose < 5) dose = 5;
-        if(dose > 80) dose = 80;
-        let level = '';
-        if(dose <= 8) level = 'Microdose: effetto percepibile e leggero.';
-        else if(dose <= 15) level = 'Dose bassa: effetto soft, adatto a principianti.';
-        else if(dose <= 30) level = 'Dose media: esperienza intensa per la maggior parte degli utenti.';
-        else level = 'Dose alta: solo per utenti con alta tolleranza.';
-        document.getElementById('dose-calc-result').innerHTML =
-          `<b>Dose consigliata:</b> ${dose}mg THC<br><span>${level}</span>`;
-      });
-    });
 
     var doseRange = document.getElementById("dose-range");
     var doseValue = document.getElementById("dose-value");
@@ -252,7 +247,9 @@
           const currentlyOpen = document.querySelector(".faq-a.open");
           if (currentlyOpen && currentlyOpen !== answer) {
             currentlyOpen.classList.remove("open");
-            currentlyOpen.previousElementSibling.classList.remove("open");
+            if (currentlyOpen.previousElementSibling) {
+              currentlyOpen.previousElementSibling.classList.remove("open");
+            }
           }
 
           question.classList.toggle("open");
@@ -288,15 +285,14 @@
     }
     // Optional: close menu when clicking outside
     document.addEventListener("click", function (event) {
-      const sideMenu = document.getElementById("sideMenu");
-      const hamburger = document.querySelector(".hamburger");
-      const isClickInsideMenu = sideMenu.contains(event.target);
-      const isClickOnHamburger = hamburger.contains(event.target);
-      const isClickInsideNavbar = event.target.closest(".navbar");
+      const menu = document.getElementById("sideMenu");
+      const burger = document.querySelector(".hamburger");
+      const isClickInsideMenu = menu && menu.contains(event.target);
+      const isClickOnBurger = burger && burger.contains(event.target);
 
-      if (!isClickInsideMenu && !isClickOnHamburger && !isClickInsideNavbar) {
-        sideMenu.classList.remove("show");
-        hamburger.classList.remove("open");
+      if (!isClickInsideMenu && !isClickOnBurger) {
+        menu.classList.remove("show");
+        burger.classList.remove("open");
       }
     });
 </script>

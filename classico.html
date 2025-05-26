@@ -88,15 +88,17 @@
         </div>
         <section class="dose-section">
           <h2>Calcola la tua dose ideale</h2>
-          <form id="dose-calc-form-classico" class="dose-calc-advanced">
+          <form id="dose-calc-form-classico" class="dose-calc-advanced" onsubmit="return false;">
             <label for="dose-weight">Peso (kg):</label>
             <input type="number" id="dose-weight" name="weight" min="35" max="180" required>
+
             <label for="dose-sex">Sesso:</label>
             <select id="dose-sex" name="sex" required>
               <option value="m">Maschio</option>
               <option value="f">Femmina</option>
               <option value="x">Altro</option>
             </select>
+
             <label for="dose-tolerance">Consumo THC:</label>
             <select id="dose-tolerance" name="tolerance" required>
               <option value="none">Mai provato</option>
@@ -104,7 +106,57 @@
               <option value="med">Regolare</option>
               <option value="high">Alta tolleranza</option>
             </select>
-            <button type="submit" class="cta">COMING SOON</button>
+
+            <label for="dose-purpose">Scopo dell'assunzione:</label>
+            <select id="dose-purpose" name="purpose" required>
+              <option value="relax">Relax leggero</option>
+              <option value="euphoria">Euforia & Creatività</option>
+              <option value="strong">Esperienza Intensa</option>
+            </select>
+
+            <button type="button" class="cta" onclick="toggleAdvanced()">Modalità avanzata</button>
+            <button type="button" class="cta" id="super-adv-toggle" style="margin-top: 12px; display: none;" onclick="toggleSuperAdvanced()">Versione super avanzata</button>
+
+            <div id="dose-advanced" style="display: none;">
+              <label for="dose-age">Età:</label>
+              <select id="dose-age" name="age">
+                <option value="18">18–25</option>
+                <option value="26">26–35</option>
+                <option value="36">36–50</option>
+                <option value="51">51+</option>
+              </select>
+
+              <label for="dose-medical">Uso:</label>
+              <select id="dose-medical" name="use">
+                <option value="recreational">Ricreativo</option>
+                <option value="medical">Medico</option>
+              </select>
+
+              <label for="dose-stress">Ansia o stress:</label>
+              <select id="dose-stress" name="stress">
+                <option value="no">No</option>
+                <option value="mild">Leggero</option>
+                <option value="yes">Forte</option>
+              </select>
+
+              <label for="dose-sleep">Problemi di sonno:</label>
+              <select id="dose-sleep" name="sleep">
+                <option value="no">No</option>
+                <option value="yes">Sì</option>
+              </select>
+
+              <label for="dose-metabolism">Metabolismo:</label>
+              <select id="dose-metabolism" name="metabolism">
+                <option value="slow">Lento</option>
+                <option value="normal">Normale</option>
+                <option value="fast">Veloce</option>
+              </select>
+
+              <label for="dose-lastuse">Ultimo uso THC:</label>
+              <input type="date" id="dose-lastuse" name="lastuse" max="9999-12-31">
+            </div>
+
+            <button type="submit" class="cta">Calcola dose</button>
           </form>
           <div class="slider-effetti">
             <label for="dose-slider">Simula una dose:</label>
@@ -113,6 +165,14 @@
             <div id="slider-effetti-descrizione">Effetto lieve, adatto a principianti.</div>
           </div>
           <div id="dose-calc-result-classico" class="dose-calc-result fadein"></div>
+          <div class="dose-disclaimer">
+            <p style="margin-top: 12px; font-size: 0.96em; color: #bbb; line-height: 1.45;">
+              ⚠️ Effetti collaterali comuni possono includere: bocca secca, sonnolenza, alterazione della percezione del tempo, aumento dell’appetito, ansia o paranoia (a dosi elevate), vomito.
+              <br><br>
+              ⚠️ La responsabilità sull’uso è personale: <strong>ChocoBloom non si assume responsabilità su effetti indesiderati derivanti da uso improprio</strong>.<br>
+              La dose raccomandata per principianti è sempre ≤ 20mg THC (1g di cioccolatino).
+            </p>
+          </div>
           <div class="dose-calc-safety">
             <small>
               Attenzione: i risultati sono solo indicativi. Inizia sempre con la dose minima possibile. Gli effetti possono durare anche 8 ore.<br>
@@ -154,7 +214,7 @@
                 <option value="60">60+</option>
               </select>
 
-              <button type="submit" class="cta">COMING SOON</button>
+              <button type="button" class="cta" id="coming-soon-btn">COMING SOON</button>
             </form>
             <div id="ai-agent-result" class="dose-calc-result fadein"></div>
           </div>
@@ -173,6 +233,21 @@
     </div>
   </footer>
   <script>
+  function toggleAdvanced() {
+    const adv = document.getElementById("dose-advanced");
+    const superBtn = document.getElementById("super-adv-toggle");
+    if (adv.style.display === "none") {
+      adv.style.display = "block";
+      superBtn.style.display = "block";
+    } else {
+      adv.style.display = "none";
+      superBtn.style.display = "none";
+    }
+  }
+
+  function toggleSuperAdvanced() {
+    alert("La versione super avanzata richiederà valori reali da esami del sangue. Funzionalità in sviluppo.");
+  }
     // Slider effetti
     function aggiornaEffettiDose(val) {
       document.getElementById('slider-dose-label').textContent = val + "mg";
@@ -196,12 +271,15 @@
       burger.classList.toggle('open');
     }
     // Chiudi il menu se clicchi fuori (opzionale)
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('sideMenu');
-      const burger = document.querySelector('.hamburger');
-      if (!menu.contains(e.target) && !burger.contains(e.target)) {
-        menu.classList.remove('show');
-        burger.classList.remove('open');
+    document.addEventListener("click", function (event) {
+      const menu = document.getElementById("sideMenu");
+      const burger = document.querySelector(".hamburger");
+      const isClickInsideMenu = menu && menu.contains(event.target);
+      const isClickOnBurger = burger && burger.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnBurger) {
+        menu.classList.remove("show");
+        burger.classList.remove("open");
       }
     });
   </script>
@@ -212,5 +290,220 @@
       resultEl.innerHTML = "Funzione BloomBot non ancora disponibile.";
     });
   </script>
+  <script>
+  // Nuovo calcolo dose avanzato con 10 input e gestione slider/result
+  (function() {
+    const form = document.getElementById('dose-calc-form-classico');
+    const resultEl = document.getElementById('dose-calc-result-classico');
+    const slider = document.getElementById('dose-slider');
+    const sliderLabel = document.getElementById('slider-dose-label');
+    const sliderDesc = document.getElementById('slider-effetti-descrizione');
+    if (!(form && resultEl && slider && sliderLabel && sliderDesc)) return;
+
+    function calcolaDoseAvanzata(values) {
+      let dose = values.weight ? parseFloat(values.weight) * 0.6 : 30;
+
+      if (values.sex === 'f') dose *= 0.85;
+      else if (values.sex === 'x') dose *= 0.93;
+
+      switch (values.tolerance) {
+        case 'none': dose *= 0.4; break;
+        case 'low': dose *= 0.7; break;
+        case 'med': dose *= 1.0; break;
+        case 'high': dose *= 2.5; break;
+      }
+
+      switch (values.purpose) {
+        case 'relax': dose *= 1.0; break;
+        case 'euphoria': dose *= 1.3; break;
+        case 'strong': dose *= 1.7; break;
+      }
+
+      if (values.age) {
+        const age = parseInt(values.age);
+        if (age <= 25) dose *= 1.1;
+        else if (age >= 51) dose *= 0.85;
+      }
+
+      if (values.use === 'medical') dose *= 1.4;
+
+      if (values.stress === 'yes') dose *= 1.25;
+      else if (values.stress === 'mild') dose *= 1.1;
+
+      if (values.sleep === 'yes') dose *= 1.15;
+
+      if (values.metabolism === 'slow') dose *= 0.9;
+      else if (values.metabolism === 'fast') dose *= 1.2;
+
+      if (values.lastuse !== undefined && values.lastuse !== null && values.lastuse !== '') {
+        const today = new Date();
+        const lastDate = new Date(values.lastuse);
+        if (!isNaN(lastDate.getTime())) {
+          const diffDays = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+          if (diffDays < 2) dose *= 1.3;
+          else if (diffDays < 8) dose *= 1.15;
+        }
+      }
+
+      dose = Math.round(dose);
+      if (dose < 5) dose = 5;
+      if (dose > 1000) dose = 1000;
+      return dose;
+    }
+
+    function effettoBadge(dose) {
+      if (dose <= 50) return {level:'Effetto lieve, adatto a principianti.', badge:'badge-lieve'};
+      if (dose <= 150) return {level:'Effetto moderato, piacevole per la maggior parte degli utenti.', badge:'badge-moderato'};
+      if (dose <= 400) return {level:'Effetto intenso, solo per utenti esperti.', badge:'badge-intenso'};
+      if (dose <= 700) return {level:'Dose elevata: effetto molto forte, attenzione!', badge:'badge-alta'};
+      return {level:'Dose massiva: solo per tolleranza altissima. Rischio effetti collaterali!', badge:'badge-estrema glow'};
+    }
+
+    function produceResultHTML(dose, isSciroppo) {
+      const unitMg = isSciroppo ? 6.6 : 200;
+      const unitLabel = isSciroppo ? 'sciroppo' : 'cioccolatino';
+      const unitG = isSciroppo ? 1 : 10;
+      const quantita = dose / unitMg;
+      const pesoInG = quantita * unitG;
+      const eff = effettoBadge(dose);
+      return `<div class="dose-result-box ${eff.badge}">
+        <span class="dose-warning-icon" role="img" aria-label="Attenzione">⚠️</span>
+        <b>Dose consigliata:</b> ${dose}mg THC<br>
+        ≈ ${quantita.toFixed(2)} ${unitLabel}${quantita >= 1.5 ? 's' : ''} (~${pesoInG.toFixed(1)}g)<br>
+        <span>${eff.level}</span>
+      </div>`;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const vals = {
+        weight: this.weight.value,
+        sex: this.sex.value,
+        tolerance: this.tolerance.value,
+        purpose: this.purpose.value,
+        age: this.age ? this.age.value : undefined,
+        use: this.use ? this.use.value : undefined,
+        stress: this.stress ? this.stress.value : undefined,
+        sleep: this.sleep ? this.sleep.value : undefined,
+        metabolism: this.metabolism ? this.metabolism.value : undefined,
+        lastuse: this.lastuse ? this.lastuse.value : undefined
+      };
+      const isSciroppo = window.location.pathname.includes('sciroppo');
+      const dose = calcolaDoseAvanzata(vals);
+      const resultHTML = produceResultHTML(dose, isSciroppo);
+      resultEl.innerHTML = resultHTML;
+      document.getElementById('dose-calc-result-classico').innerHTML = resultHTML;
+      // Aggiorna slider visual
+      slider.value = dose;
+      sliderLabel.textContent = `${dose}mg`;
+      const eff = effettoBadge(dose);
+      sliderDesc.textContent = eff.level;
+      // Clona risultato sotto slider
+      let sliderResultClone = document.getElementById("dose-calc-clone");
+      if (sliderResultClone) sliderResultClone.remove();
+      // Crea nuovo clone dal resultHTML (per evitare duplicazione id)
+      let temp = document.createElement('div');
+      temp.innerHTML = resultHTML;
+      sliderResultClone = temp.firstElementChild;
+      sliderResultClone.id = "dose-calc-clone";
+      sliderResultClone.style.marginTop = "12px";
+      slider.parentElement.appendChild(sliderResultClone);
+    });
+
+    // Aggiorna slider effetti e clona risultato
+    window.aggiornaEffettiDose = function(val) {
+      sliderLabel.textContent = val + "mg";
+      val = parseInt(val);
+      let eff = effettoBadge(val);
+      sliderDesc.textContent = eff.level;
+      // Mostra anche il box con badge
+      const isSciroppo = window.location.pathname.includes('sciroppo');
+      let html = produceResultHTML(val, isSciroppo);
+      // Aggiorna il blocco sotto il form
+      document.getElementById('dose-calc-result-classico').innerHTML = html;
+      // Gestisci il clone sotto lo slider
+      let sliderResultClone = document.getElementById("dose-calc-clone");
+      if (sliderResultClone) sliderResultClone.remove();
+      let temp = document.createElement('div');
+      temp.innerHTML = html;
+      sliderResultClone = temp.firstElementChild;
+      sliderResultClone.id = "dose-calc-clone";
+      sliderResultClone.style.marginTop = "12px";
+      slider.parentElement.appendChild(sliderResultClone);
+    }
+  })();
+  // Cannabis leaf animation per coming soon
+    document.addEventListener("DOMContentLoaded", function() {
+      const comingSoonBtn = document.getElementById("coming-soon-btn");
+      if (comingSoonBtn) {
+        comingSoonBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          
+          // Crea foglie di cannabis
+          for (let i = 0; i < 12; i++) {
+            setTimeout(() => {
+              const leaf = document.createElement("div");
+              leaf.className = "leaf";
+              leaf.style.left = Math.random() * window.innerWidth + "px";
+              leaf.style.top = Math.random() * window.innerHeight + "px";
+              document.body.appendChild(leaf);
+              
+              setTimeout(() => leaf.remove(), 2400);
+            }, i * 100);
+          }
+          
+          // Mostra messaggio
+          const resultEl = document.getElementById("ai-agent-result");
+          if (resultEl) {
+            resultEl.innerHTML = "🍃 Funzione BloomBot in arrivo... 🍃";
+            resultEl.style.color = "#00ff00";
+            setTimeout(() => {
+              resultEl.style.color = "#ff3399";
+            }, 2000);
+          }
+        });
+      }
+    });
+  </script>
+  <style>
+    .dose-result-box {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.1em;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 0 !important;
+    }
+    .badge-lieve { background: #220033; color: #ccc; border: 1px solid #8844aa; }
+    .badge-moderato { background: #331144; color: #fff; border: 1px solid #bb66cc; }
+    .badge-intenso { background: #552266; color: #fff; border: 1px solid #dd88ee; }
+    .badge-alta { background: #7a0055; color: #fff; border: 1px solid #ff00cc; }
+    .badge-estrema {
+      background: #990033;
+      color: #fff;
+      border: 2px solid #ff3399;
+      animation: pulseGlow 1.4s infinite ease-in-out;
+    }
+    .glow {
+      box-shadow: 0 0 12px #ff3399, 0 0 24px #ff66cc;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 12px #ff00cc66; }
+      50% { box-shadow: 0 0 38px #ff33ccaa; }
+      100% { box-shadow: 0 0 12px #ff00cc66; }
+    }
+    /* Fix spazio vuoto e emoji trasparente */
+    .dose-calc-result {
+      margin-bottom: 0 !important;
+    }
+    .dose-disclaimer {
+      margin-top: 8px !important;
+    }
+    .dose-warning-icon {
+      background: transparent !important;
+      -webkit-text-fill-color: inherit;
+    }
+  </style>
 </body>
 </html>
